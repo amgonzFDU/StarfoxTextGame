@@ -1,12 +1,23 @@
 #include "Player.h"
+/*
+Defult player constructor
+*/
+Player::Player(std::string name)
+{
+	this->name = name;
+}
 
-
-
-Player::Player()
+/*
+Defult player destructor
+*/
+Player::~Player()
 {
 }
 
-
-Player::~Player()
+/*
+Returns the name varuable in the player class.
+*/
+std::string Player::getName()
 {
+	return this->name;
 }

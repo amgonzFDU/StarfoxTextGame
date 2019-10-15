@@ -14,6 +14,38 @@ int main(int argc, char *argv[])
 	std::cout << "\n";
 
 	std::string userInput;
+	
+	
+	// Room constructor
+	struct Room
+	{
+		Room *North;
+		Room *South;
+		Room *East;
+		Room *West;
+
+	};
+	// points to current room
+	Room* CURRENTROOM = NULL;
+	
+	// make tests rooms
+	Room* one = NULL;
+	Room* two = NULL;
+	Room* three = NULL;
+	
+	one = new Room();
+	two = new Room();
+	three = new Room();
+
+
+	//links rooms together
+	one->East = two;
+	two->West = one;
+	two->South = three;
+	three->North = two;
+
+	//sets current room to the first room 1
+	CURRENTROOM = one;
 
 	while (userInput != "QUIT") {
 		userInput.clear();

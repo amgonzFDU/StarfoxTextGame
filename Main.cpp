@@ -12,10 +12,12 @@ int main() {
 	// Display game rules
 
 	//Request for command
-
+	std::cout << someString << "What would you like to do?";
 	/*
 	this should check the players input and confirm if its valid.
 	While its valid it will decide what should happen next.
+	*/
+
 	while(checkCommand(inputString)){
 		if(inputString == quit){
 		exit game
@@ -27,7 +29,7 @@ int main() {
 		.
 		.
 	}
-	*/
+	
 }
 //Anthony Gonzalez
 

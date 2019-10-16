@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
 
 	std::string userInput;
 	
-	
 	// Room constructor
 	struct Room
 	{
+		std::string RoomName;
 		Room *North;
 		Room *South;
 		Room *East;
@@ -38,11 +38,14 @@ int main(int argc, char *argv[])
 	three = new Room();
 
 
-	//links rooms together
+	//links rooms together and sets names
 	one->East = two;
+	one->RoomName = "Room 1";
 	two->West = one;
+	two->RoomName = "Room 2";
 	two->South = three;
 	three->North = two;
+	three->RoomName = "Room 3";
 
 	//sets current room to the first room 1
 	CURRENTROOM = one;

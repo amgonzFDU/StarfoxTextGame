@@ -57,12 +57,22 @@ int main(int argc, char *argv[])
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 		if (userInput == "YES")
 		{
-			std::cout << "You are now in the next room.\n";
+			std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
+			if(CURRENTROOM->RoomName == "Room 1")
+			{
+				CURRENTROOM = two;
+			}
+			else if (CURRENTROOM->RoomName == "Room 2") {
+				CURRENTROOM = one;
+			}
 		}
 		else if (userInput == "NO")
 		{
 			std::cout << "You stayed in the same room.\n";
-		}		
+		}
+		else if (userInput == "ROOM") {
+			std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+		}
 		else if(userInput != "YES" || userInput != "NO" && userInput == "QUIT")
 		{
 			

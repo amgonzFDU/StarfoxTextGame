@@ -5,6 +5,7 @@
 #include <algorithm>
 int main(int argc, char *argv[])
 {
+	//Created my own Branch: AlexisChavez
 	std::cout << "Please Enter your name.\n";
 	std::string name;
     std::cin >> name;
@@ -53,11 +54,11 @@ int main(int argc, char *argv[])
 	while (userInput != "QUIT") {
 		userInput.clear();
 		std::cout << "Would you like to go to the next room?\n";		
-		std::cin >> userInput;
+		getline(std::cin, userInput);
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 		if (userInput == "YES")
 		{
-			std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
+			std::cout << "You are now in the next room. \nIf you want to know the room name type room.\n";
 			if(CURRENTROOM->RoomName == "Room 1")
 			{
 				CURRENTROOM = two;

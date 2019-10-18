@@ -3,6 +3,17 @@
 #include "Input.h"
 #include <iostream>
 #include <algorithm>
+
+bool validateInput(std::string userInput) {
+	std::string validInputs[5] = { "GO", "USE", "THROW", "DROP" };
+	for (int i = 0; i < sizeof(validInputs); i++) {
+		if (validInputs[i].find(userInput, 0) != std::string::npos) {			
+			return true;
+		}
+	}
+	return false;
+}
+
 int main(int argc, char *argv[])
 {
 	//Created my own Branch: AlexisChavez
@@ -16,15 +27,17 @@ int main(int argc, char *argv[])
 
 	std::string userInput;
 	
+
 	// Room constructor
 	struct Room
 	{
 		std::string RoomName;
-		Room *North;
+		std::string validDirections[4] = { "NORTH", "EAST" };
+		Room *NORTH;
 		Room *South;
 		Room *East;
 		Room *West;
-
+		
 	};
 	// points to current room
 	Room* CURRENTROOM = NULL;
@@ -45,42 +58,40 @@ int main(int argc, char *argv[])
 	two->West = one;
 	two->RoomName = "Room 2";
 	two->South = three;
-	three->North = two;
+	three->NORTH = two;
 	three->RoomName = "Room 3";
 
 	//sets current room to the first room 1
 	CURRENTROOM = one;
 
-	while (userInput != "QUIT") {
-		userInput.clear();
-		std::cout << "Would you like to go to the next room?\n";		
-		getline(std::cin, userInput);
+	while (userInput != "QUIT") {		
+		std::cout << "What would you like to do?\n";	
+		std::cin >> userInput;
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
-		if (userInput == "YES")
-		{
-			std::cout << "You are now in the next room. \nIf you want to know the room name type room.\n";
-			if(CURRENTROOM->RoomName == "Room 1")
+		if (!validateInput(userInput)) {
+			std::cout << "Please enter a valid command...\n";
+		}
+		else {
+			if (userInput == "GO") {
+				std::cout << "Where would you like to go? \n";
+				//if(checkIfPossibleMove)
+				//go to room
+			}
+			else if (userInput == "USE") {
+				std::cout << "What would you like to use?\n";
+			}
+			else if (userInput == "THROW") {
+				std::cout << "What would you like to throw?\n";
+			}
+			else if (userInput == "DROP") {
+				std::cout << "What would you like to drop?\n";
+			}
+			else
 			{
-				CURRENTROOM = two;
-			}
-			else if (CURRENTROOM->RoomName == "Room 2") {
-				CURRENTROOM = one;
+				std::cout << "Not a valid input.\n";
 			}
 		}
-		else if (userInput == "NO")
-		{
-			std::cout << "You stayed in the same room.\n";
-		}
-		else if (userInput == "ROOM") {
-			std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
-		}
-		else if(userInput != "YES" || userInput != "NO" && userInput == "QUIT")
-		{
-			
-		}		
-		else if (userInput != "YES" || userInput != "NO") {
-			std::cout << "It's a yes or question...\n";
-		}
+		userInput.clear();
 	}
 	
 	std::cout << "Goodbye.";
@@ -88,3 +99,5 @@ int main(int argc, char *argv[])
 	std::cin.get();
 	return 0;
 }
+
+

@@ -1,15 +1,16 @@
 #pragma once
+#include <string>
 class Room
 {
-private:
-	double width;
-	double length;
-	double height;
 public:
+	std::string name;
+	std::string currentRoom;
+	int RoomExit[2];
+	Room(Room* room, int);
 	Room();
 	~Room();
-	double getWidth();
-	double getLength();
-	double getHeight();
+	void setRoom(Room* room);
+	void setCurrentRoom(Room* room, int);
+	std::string getCurrentRoom();
 };
 

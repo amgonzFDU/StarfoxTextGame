@@ -49,7 +49,16 @@ int main(int argc, char *argv[])
 
 	//sets current room to the first room 1
 	CURRENTROOM = one;
-
+	
+	//Checks if the pointer works as intended
+	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+	CURRENTROOM = CURRENTROOM->East;
+	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+	CURRENTROOM = CURRENTROOM->West;
+	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+	
+	
+	
 	while (userInput != "QUIT") {
 		userInput.clear();
 		std::cout << "Would you like to go to the next room?\n";		

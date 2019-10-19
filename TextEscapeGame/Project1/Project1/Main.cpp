@@ -16,68 +16,179 @@ int main(int argc, char *argv[])
 	std::string userInput;
 	
 	// Room constructor
+
+	/*
+	Was having alot of issuse linking rooms together using a seperate class file.
+	But was able to get it working properly 
+
+	
+	*/
 	struct Room
 	{
 		std::string RoomName;
-		Room *North;
-		Room *South;
-		Room *East;
-		Room *West;
+		Room* North;
+		Room* South;
+		Room* East;
+		Room* West;
+		//add an item array
+		//add a lock object or something
 
 	};
-	// points to current room
+	// points to current room the player is in. 
 	Room* CURRENTROOM = NULL;
-	
+
 	// make tests rooms
-	Room* one = NULL;
-	Room* two = NULL;
-	Room* three = NULL;
+	Room* one = new Room();
+	Room* two = new Room();
+	Room* three = new Room();
+	Room* four = new Room();
+	Room* five = new Room();
+	Room* six = new Room();
+	Room* seven = new Room();
+	Room* eight = new Room();
+	Room* nine = new Room();
+
+	/*
+
+
+        N
+	    |
+	W---|---E
+	    |
+        S
+
+
+	Test Room Layout 
+
+	| 1 | 2 | 3 |            
+	-------------
+	| 4 | 5 | 6 |       
+	-------------
+	| 7 | 8 | 9 |
 	
-	one = new Room();
-	two = new Room();
-	three = new Room();
 
+	*directions in rooms with no conecting room should return as null ex. 'one.North' send back a null value*
+	
+	*/
 
-	//links rooms together and sets names
+	//links rooms together and sets room names	
+	one->RoomName = "Room 1";	
 	one->East = two;
-	one->RoomName = "Room 1";
-	two->West = one;
-	two->RoomName = "Room 2";
-	two->South = three;
-	three->North = two;
-	three->RoomName = "Room 3";
-
-	//sets current room to the first room 1
-	CURRENTROOM = one;
+	one->South = four;
 	
+	two->RoomName = "Room 2";
+	two->West = one;
+	two->East = three;
+	two->South = five;
+	
+	three->RoomName = "Room 3";
+	three->East = two;
+	three->South = six;
+
+	four->RoomName = "Room 4";
+	four->East = five;
+	four->North = one;
+	four->South = seven;
+	
+	five->RoomName = "Room 5"; // sets room name
+	five->East = six; // sets room to the east
+	five->West = four; // sets room to the west
+	five->North = two; // sets room to the north
+	five->South = eight; // sets room to the south
+	
+	six->RoomName = "Room 6";
+	six->West = five;
+	six->North = three;
+	six->South = nine;
+
+	seven->RoomName = "Room 7";
+	seven->East = eight;
+	seven->North = four;
+
+	eight->RoomName = "Room 8";
+	eight->East = nine;
+	eight->West = seven;
+	eight->North = five;
+
+	nine->RoomName = "Room 9";
+	nine->West = eight;
+	nine->North = six;
+	
+	/*
+	section to set the items in the item array for each room
+	*/
+
+	
+
+	//sets current room to the first room, room 1
+	CURRENTROOM = one;
+
 	//Checks if the pointer works as intended
 	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
 	CURRENTROOM = CURRENTROOM->East;
 	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
 	CURRENTROOM = CURRENTROOM->West;
+
 	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
-	
-	
-	
+	CURRENTROOM = CURRENTROOM->South;
+	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+	CURRENTROOM = CURRENTROOM->East;
+	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+	CURRENTROOM = CURRENTROOM->North;
+	std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+
+	//reset pointer after above test.
+	CURRENTROOM = one;
+
+
 	while (userInput != "QUIT") {
 		userInput.clear();
-		std::cout << "Would you like to go to the next room?\n";		
+		std::cout << "Pick a direction\n";		
 		std::cin >> userInput;
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
-		if (userInput == "YES")
+		if (userInput == "EAST")
 		{
-			std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
-			if(CURRENTROOM->RoomName == "Room 1")
+			if(CURRENTROOM->East != NULL)
 			{
-				CURRENTROOM = two;
+				CURRENTROOM = CURRENTROOM->East;
+				std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
 			}
-			else if (CURRENTROOM->RoomName == "Room 2") {
-				CURRENTROOM = one;
+			else {
+				std::cout << "You cant go that way.\n";
 			}
 		}
-		else if (userInput == "NO")
+		else if (userInput == "WEST")
 		{
-			std::cout << "You stayed in the same room.\n";
+			if (CURRENTROOM->West != NULL)
+			{
+				CURRENTROOM = CURRENTROOM->West;
+				std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
+			}
+			else {
+				std::cout << "You cant go that way.\n";
+			}
+		}
+		else if (userInput == "NORTH")
+		{
+			if (CURRENTROOM->North != NULL)
+			{
+				CURRENTROOM = CURRENTROOM->North;
+				std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
+			}
+			else {
+				std::cout << "You cant go that way.\n";
+			}
+		}
+		else if (userInput == "SOUTH")
+		{
+			if (CURRENTROOM->South != NULL)
+			{
+				CURRENTROOM = CURRENTROOM->South;
+				std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
+			}
+			else {
+				std::cout << "You cant go that way.\n";
+			}
 		}
 		else if (userInput == "ROOM") {
 			std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";

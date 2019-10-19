@@ -13,8 +13,8 @@ Items::~Items() {
 //sets the location of the item you want
 void Items::setItemLocation(Items* item) {
 	item[rock].name.assign("rock");
-	item[rock].location[cell];
-	item[key].location[cell2];
+	item[rock].location[cell] = 0;
+	item[key].location[cell2] = 1;
 }
 /*
 gets the location of the item which it outputs as a number the computer gives it

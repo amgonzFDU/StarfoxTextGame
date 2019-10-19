@@ -7,9 +7,9 @@
 #include <string>
 
 //the number of items in the game
-const int ITEMS = 1;
+extern const int ITEMS = 1;
 //the number of rooms in the game
-const int rooms = 2;
+extern const int ROOMS = 2;
 int main(int argc, char *argv[])
 {
 	
@@ -17,7 +17,15 @@ int main(int argc, char *argv[])
 	Items item[ITEMS];
 	//sets the name of the item
 	item->setItemLocation(item);
-	
+
+	//Inializes an array that will hold the rooms with proprties
+	Room room[ROOMS];
+	//sets the properties of the items
+	room->setRoom(room);
+
+
+
+
 	std::cout << "Please Enter your name.\n";
 	std::string name;
     std::cin >> name;
@@ -28,40 +36,13 @@ int main(int argc, char *argv[])
 
 	std::string userInput;
 	
-	// Room constructor
-	struct Room
-	{
-		std::string RoomName;
-		Room *North;
-		Room *South;
-		Room *East;
-		Room *West;
-
-	};
+	
 	// points to current room
-	Room* CURRENTROOM = NULL;
+	Room* CURRENTROOM = new Room(room , 0);
 	
-	// make tests rooms
-	Room* one = NULL;
-	Room* two = NULL;
-	Room* three = NULL;
-	
-	one = new Room();
-	two = new Room();
-	three = new Room();
+	//sets current room to the first room 0 which is the cell
+	CURRENTROOM->setCurrentRoom(room, 0);
 
-
-	//links rooms together and sets names
-	one->East = two;
-	one->RoomName = "Room 1";
-	two->West = one;
-	two->RoomName = "Room 2";
-	two->South = three;
-	three->North = two;
-	three->RoomName = "Room 3";
-
-	//sets current room to the first room 1
-	CURRENTROOM = one;
 
 	while (userInput != "QUIT") {
 		userInput.clear();
@@ -71,12 +52,12 @@ int main(int argc, char *argv[])
 		if (userInput == "YES")
 		{
 			std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
-			if(CURRENTROOM->RoomName == "Room 1")
+			if(CURRENTROOM->getCurrentRoom() == "Cell")
 			{
-				CURRENTROOM = two;
+				CURRENTROOM->setCurrentRoom(room, 1);
 			}
-			else if (CURRENTROOM->RoomName == "Room 2") {
-				CURRENTROOM = one;
+			else if (CURRENTROOM->getCurrentRoom() == "Cell 2") {
+				CURRENTROOM->setCurrentRoom(room, 0);
 			}
 		}
 		else if (userInput == "NO")
@@ -85,7 +66,7 @@ int main(int argc, char *argv[])
 		}
 		else if (userInput == "ROOM") 
 		{
-			std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+			std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
 		}
 		else if (userInput == "ITEM")
 		{

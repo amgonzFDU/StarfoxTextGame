@@ -7,14 +7,12 @@ Defult Room constructor
 Room::Room()
 {
 }
-
 /*
 Defult Room destructor
 */
 Room::~Room()
 {
 }
-
 /*
 Returns the width of the room.
 */

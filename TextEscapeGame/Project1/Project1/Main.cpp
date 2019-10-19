@@ -1,10 +1,23 @@
 #include "Player.h"
 #include "Room.h"
 #include "Input.h"
+#include "Items.h"
 #include <iostream>
 #include <algorithm>
+#include <string>
+
+//the number of items in the game
+const int ITEMS = 1;
+//the number of rooms in the game
+const int rooms = 2;
 int main(int argc, char *argv[])
 {
+	
+	//Inializes an array that will hold the items with their properties
+	Items item[ITEMS];
+	//sets the name of the item
+	item->setItemLocation(item);
+	
 	std::cout << "Please Enter your name.\n";
 	std::string name;
     std::cin >> name;
@@ -70,8 +83,14 @@ int main(int argc, char *argv[])
 		{
 			std::cout << "You stayed in the same room.\n";
 		}
-		else if (userInput == "ROOM") {
+		else if (userInput == "ROOM") 
+		{
 			std::cout << "The room is: " << CURRENTROOM->RoomName << "\n";
+		}
+		else if (userInput == "ITEM")
+		{
+			std::cout << "rock IS in room " << item->getItemLocation(item, 0) << "\n";
+			std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
 		}
 		else if(userInput != "YES" || userInput != "NO" && userInput == "QUIT")
 		{

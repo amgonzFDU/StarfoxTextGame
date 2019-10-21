@@ -7,7 +7,7 @@
 #include <string>
 
 //the number of items in the game
-extern const int ITEMS = 1;
+extern const int ITEMS = 2;
 //the number of rooms in the game
 extern const int ROOMS = 2;
 int main(int argc, char *argv[])
@@ -49,17 +49,36 @@ int main(int argc, char *argv[])
 		std::cout << "Would you like to go to the next room?\n";		
 		std::cin >> userInput;
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
-		if (userInput == "YES")
+		if (userInput == "NORTH")//north
 		{
-			std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
-			if(CURRENTROOM->getCurrentRoom() == "Cell")
+			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+			CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+		}
+		if (userInput == "SOUTH")//north
+		{
+			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+			CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
+		}
+		if (userInput == "EAST")//north
+		{
+			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+			CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+		}
+		if (userInput == "WEST")//north
+		{
+			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+			CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+		}
+
+			//std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
+
+			/*if(CURRENTROOM->getCurrentRoom() == "Cell")
 			{
 				CURRENTROOM->setCurrentRoom(room, 1);
 			}
 			else if (CURRENTROOM->getCurrentRoom() == "Cell 2") {
 				CURRENTROOM->setCurrentRoom(room, 0);
-			}
-		}
+			}*/
 		else if (userInput == "NO")
 		{
 			std::cout << "You stayed in the same room.\n";

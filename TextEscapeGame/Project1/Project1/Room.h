@@ -3,14 +3,15 @@
 class Room
 {
 public:
-	std::string name;
-	std::string currentRoom;
+	int name;
+	int currentRoom;
 	int RoomExit[2];
 	Room(Room* room, int);
 	Room();
 	~Room();
+	void moveRoom(Room* room,int,int);
 	void setRoom(Room* room);
 	void setCurrentRoom(Room* room, int);
-	std::string getCurrentRoom();
+	int getCurrentRoom();
 };
 

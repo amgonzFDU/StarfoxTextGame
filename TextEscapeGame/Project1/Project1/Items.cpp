@@ -2,7 +2,7 @@
 // constructor
 // turns strings into numbers so rock is equal to 0 and key is equal to 1
 enum itemsname { rock, key };
-enum itemslocation{cell,cell2};
+enum itemslocation{player,cell,cell2};
 Items::Items() {
 
 }
@@ -13,8 +13,8 @@ Items::~Items() {
 //sets the location of the item you want
 void Items::setItemLocation(Items* item) {
 	item[rock].name.assign("rock");
-	item[rock].location[cell] = 0;
-	item[key].location[cell2] = 1;
+	item[rock].location[cell] = 1;
+	item[key].location[cell2] = 2;
 }
 /*
 gets the location of the item which it outputs as a number the computer gives it

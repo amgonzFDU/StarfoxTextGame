@@ -86,7 +86,7 @@ void Room::moveRoom(Room* room, int roomName,int direction){
 	roomnum = room[roomName].RoomExit[direction];
 	//checks to see if there is a room where the player want to go
 	if (roomnum == -1) {
-		std::cout << "There is no room that way try again";
+		std::cout << "There is no room that way try again \n";
 		return;
 	}
 	setCurrentRoom(room, roomnum);	

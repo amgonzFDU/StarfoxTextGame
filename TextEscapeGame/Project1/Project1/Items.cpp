@@ -13,8 +13,8 @@ Items::~Items() {
 //sets the location of the item you want
 void Items::setItemLocation(Items* item) {
 	item[rock].name.assign("rock");
-	item[rock].location[cell] = 1;
-	item[key].location[cell2] = 2;
+	item[rock].location = cell;
+	item[key].location = cell2;
 }
 /*
 gets the location of the item which it outputs as a number the computer gives it
@@ -22,7 +22,7 @@ but it will give a acctuall room when we friend the room class.
 */
 
 int Items::getItemLocation(Items* item,int itmNum) {
-	int *temp = item[itmNum].location;
-	return *temp;
+	int temp = item[itmNum].location;
+	return temp;
 	
 }

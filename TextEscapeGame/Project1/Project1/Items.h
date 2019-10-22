@@ -7,7 +7,7 @@ class Items
 	friend class Room;
 public:
 	std::string name;
-	int location[1];
+	int location;
 	Items();
 	~Items();
 	void setItemName(std::string);

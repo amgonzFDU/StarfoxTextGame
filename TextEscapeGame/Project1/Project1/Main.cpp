@@ -9,7 +9,7 @@
 //the number of items in the game
 extern const int ITEMS = 2;
 //the number of rooms in the game
-extern const int ROOMS = 2;
+extern const int ROOMS = 9;
 //number of verbs in the game
 extern const int VERBS = 6;
 
@@ -140,9 +140,9 @@ int main(int argc, char *argv[])
 		std::cin >> userInput;
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 		if (!validateInput(userInput)) {
-			std::cout << "Enter a valid command \n";
+			std::cout << "Enter a valid command \n"; //not working properly
 		}		
-		else if (userInput == "QUIT") {
+		else if (userInput == "QUIT") { 
 			std::cout << "Quiting \n";
 		}		
 		else{

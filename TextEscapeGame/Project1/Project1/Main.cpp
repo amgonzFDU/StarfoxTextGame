@@ -9,7 +9,22 @@
 //the number of items in the game
 extern const int ITEMS = 2;
 //the number of rooms in the game
-extern const int ROOMS = 2;
+extern const int ROOMS = 9;
+//number of verbs in the game
+extern const int VERBS = 6;
+
+//validates the input is an aproved verb
+bool validateInput(std::string userInput) {
+	std::string validInputs[VERBS] = { "GO", "USE", "THROW", "DROP", "ROOM","ITEM" };
+	for (int i = 0; i < sizeof(validInputs); i++) {
+		if (validInputs[i] == userInput) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
 int main(int argc, char *argv[])
 {
 	
@@ -36,70 +51,198 @@ int main(int argc, char *argv[])
 
 	std::string userInput;
 	
+	/*
+		N
+		|
+	W---|---E
+		|
+		S
+	Test Room Layout
+	| 0 | 1 | 2 |
+	-------------
+	| 3 | 4 | 5 |
+	-------------
+	| 6 | 7 | 8 |
+	*/
+
+	
+	
 	
 	// points to current room
 	Room* CURRENTROOM = new Room(room , 0);
 	
 	//sets current room to the first room 0 which is the cell
 	CURRENTROOM->setCurrentRoom(room, 0);
+	//tests to see if the rooms move around correctly 
+	//shout out put room numbers in 0, 1, 2 ,5,4,3,no room that way,3,6,7,8,5,2,1,0
+	/*
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+
+	int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+
+	currentRoomNumber = CURRENTROOM->getCurrentRoom();
+	CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+	std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+	*/
+	
 
 
 	while (userInput != "QUIT") {
 		userInput.clear();
-		std::cout << "Would you like to go to the next room?\n";		
+		std::cout << "What do you want to do?\n";
 		std::cin >> userInput;
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
-		if (userInput == "NORTH")//north
-		{
-			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-			CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
-		}
-		if (userInput == "SOUTH")//north
-		{
-			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-			CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
-		}
-		if (userInput == "EAST")//north
-		{
-			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-			CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
-		}
-		if (userInput == "WEST")//north
-		{
-			int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-			CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
-		}
-
-			//std::cout << "You are now in the next room. \nIf you want to knoww the room name type room.\n";
-
-			/*if(CURRENTROOM->getCurrentRoom() == "Cell")
-			{
-				CURRENTROOM->setCurrentRoom(room, 1);
-			}
-			else if (CURRENTROOM->getCurrentRoom() == "Cell 2") {
-				CURRENTROOM->setCurrentRoom(room, 0);
-			}*/
-		else if (userInput == "NO")
-		{
-			std::cout << "You stayed in the same room.\n";
-		}
-		else if (userInput == "ROOM") 
-		{
-			std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
-		}
-		else if (userInput == "ITEM")
-		{
-			std::cout << "rock IS in room " << item->getItemLocation(item, 0) << "\n";
-			std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
-		}
-		else if(userInput != "YES" || userInput != "NO" && userInput == "QUIT")
-		{
-			
+		if (!validateInput(userInput)) {
+			std::cout << "Enter a valid command \n"; //not working properly
 		}		
-		else if (userInput != "YES" || userInput != "NO") {
-			std::cout << "It's a yes or question...\n";
+		else if (userInput == "QUIT") { 
+			std::cout << "Quiting \n";
+		}		
+		else{
+			if (userInput == "GO") {
+				std::cout << "Where would you like to go? \n";
+				userInput.clear();
+				std::cin >> userInput;
+				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
+				if (userInput == "NORTH")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+				}
+				if (userInput == "SOUTH")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
+				}
+				if (userInput == "EAST")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+				}
+				if (userInput == "WEST")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+				}
+			}
+			else if (userInput == "USE") {
+				std::cout << "What would you like to use?\n";
+			}
+			else if (userInput == "THROW") {
+				std::cout << "What would you like to throw?\n";
+			}
+			else if (userInput == "DROP") {
+				std::cout << "What would you like to drop?\n";
+			}
+			else if (userInput == "ROOM") {
+				std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+			}
+			else if (userInput == "ITEM")
+			{
+				std::cout << "rock IS in room " << item->getItemLocation(item, 0) << "\n";
+				std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
+			}
+			
 		}
+		
+				
 	}
+	
+	// old input validation
+	/*
+				if (userInput == "NORTH")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+				}
+				if (userInput == "SOUTH")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
+				}
+				if (userInput == "EAST")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+				}
+				if(userInput == "WEST")
+				{
+					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+					CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+				}
+
+
+				else if (userInput == "USE") {
+					std::cout << "What would you like to use?\n";
+				}
+				else if (userInput == "THROW") {
+					std::cout << "What would you like to throw?\n";
+				}
+				else if (userInput == "DROP") {
+					std::cout << "What would you like to drop?\n";
+				}
+				else if (userInput == "ROOM")
+				{
+					std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
+				}
+				else if (userInput == "ITEM")
+				{
+					std::cout << "rock IS in room " << item->getItemLocation(item, 0) << "\n";
+					std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
+				}
+
+				else{
+					std::cout << "Not a valid input\n";
+				}
+				userInput.clear();
+				*/
 	
 	std::cout << "Goodbye.";
 	std::cin.get();

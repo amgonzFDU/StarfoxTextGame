@@ -1,9 +1,10 @@
 #include "Room.h"
 #include <iostream>
 
-enum RoomNames {cell,cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9};
+enum RoomNames {player,cell,cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9};
 enum directions {north,south,east,west};
 const int NONE = -1;
+
 /*
 Defult Room constructor
 */

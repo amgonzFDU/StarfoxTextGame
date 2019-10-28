@@ -6,17 +6,19 @@
 #include <algorithm>
 #include <string>
 
+
 //the number of items in the game
 extern const int ITEMS = 2;
 //the number of rooms in the game
 extern const int ROOMS = 9;
 //number of verbs in the game
 extern const int VERBS = 6;
-
+//enumerator to help with item pick up
+enum itemsname { rock, key };
 //validates the input is an aproved verb
 bool validateInput(std::string userInput) {
 	std::string validInputs[VERBS] = { "GO", "USE", "THROW", "DROP", "ROOM","ITEM" };
-	for (int i = 0; i < sizeof(validInputs); i++) {
+	for (int i = 0; i < VERBS; i++) {
 		if (validInputs[i] == userInput) {
 			return true;
 		}
@@ -58,21 +60,21 @@ int main(int argc, char *argv[])
 		|
 		S
 	Test Room Layout
-	| 0 | 1 | 2 |
+	| 1 | 2 | 3 |
 	-------------
-	| 3 | 4 | 5 |
+	| 4 | 5 | 6 |
 	-------------
-	| 6 | 7 | 8 |
+	| 7 | 8 | 9 |
 	*/
 
 	
 	
 	
 	// points to current room
-	Room* CURRENTROOM = new Room(room , 0);
+	Room* CURRENTROOM = new Room(room , 1);
 	
 	//sets current room to the first room 0 which is the cell
-	CURRENTROOM->setCurrentRoom(room, 0);
+	CURRENTROOM->setCurrentRoom(room, 1);
 	//tests to see if the rooms move around correctly 
 	//shout out put room numbers in 0, 1, 2 ,5,4,3,no room that way,3,6,7,8,5,2,1,0
 	/*
@@ -180,14 +182,33 @@ int main(int argc, char *argv[])
 			}
 			else if (userInput == "DROP") {
 				std::cout << "What would you like to drop?\n";
+
+				userInput.clear();
+				std::cout << "What Item do you want to drop?\n";
+				std::cin >> userInput;//Rock
+				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
+				int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+				item->PlayerDrop(item,userInput, currentRoomNumber);
 			}
 			else if (userInput == "ROOM") {
 				std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
 			}
-			else if (userInput == "ITEM")
+			else if (userInput == "ITEM")//pick up
 			{
+				userInput.clear();
+				std::cout << "What Item do you want to pick up?\n";
+				std::cin >> userInput;//Rock
+				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
+	
+     			/*tries to find the item according to user input 
+				and return as a number in the enum	
+				we need to know the item they want to pick up
+				so if they type rock it should go in as a number*/
+				int currentRoomNumber = CURRENTROOM->getCurrentRoom();
+				item->PlayerPickup(item, userInput,currentRoomNumber);
+				
 				std::cout << "rock IS in room " << item->getItemLocation(item, 0) << "\n";
-				std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
+				//std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
 			}
 			
 		}

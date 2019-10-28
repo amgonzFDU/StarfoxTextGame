@@ -10,7 +10,11 @@ public:
 	int location;
 	Items();
 	~Items();
-	void setItemName(std::string);
+	int userInputToEnumItemLocation(Items* item, std::string);
+	int getItemNameEnum(Items*, std::string);
 	void setItemLocation(Items *item);
 	int getItemLocation(Items * item,int);
+	void PlayerPickup(Items* item, std::string,int);
+	void PlayerDrop(Items* item, std::string,int);
+
 };

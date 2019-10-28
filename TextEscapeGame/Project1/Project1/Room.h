@@ -2,6 +2,7 @@
 #include <string>
 class Room
 {
+	friend class Items;
 public:
 	int name;
 	int currentRoom;

@@ -6,7 +6,7 @@ class Room
 public:
 	int name;
 	int currentRoom;
-	int RoomExit[2];
+	int RoomExit[4];
 	Room(Room* room, int);
 	Room();
 	~Room();

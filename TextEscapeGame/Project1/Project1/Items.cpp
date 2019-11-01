@@ -16,8 +16,11 @@ Items::~Items() {
 void Items::setItemLocation(Items* item) {
 	item[rock].name.assign("ROCK");
 	item[rock].location = cell;
+	item[rock].itemRoom.assign("cell");
+
 	item[key].name.assign("KEY");
 	item[key].location = cell2;
+
 }
 /*
 gets the location of the item which it outputs as a number the computer gives it
@@ -31,19 +34,24 @@ void Items::PlayerPickup(Items* item, std::string userInput,int currentRoom) {
 	if (currentRoom == itemLocationEnumNumber) {
 		int itemNameEnumNumber = getItemNameEnum(item, userInput);
 		item[itemNameEnumNumber].location = 0;
+		item[itemNameEnumNumber].itemRoom.assign("Player");
 	}
 }
 // If the player wants to drop an item then we get what room they are in and set that to the item;
-void Items::PlayerDrop(Items* item, std::string userInput, int currentRoom) {
+void Items::PlayerDrop(Items* item, std::string userInput, int currentRoomNumber,std::string currentRoomName) {
 	
 	int itemNameEnumNumber = getItemNameEnum(item, userInput);
-	item[itemNameEnumNumber].location = currentRoom;
-	
+	item[itemNameEnumNumber].location = currentRoomNumber;
+
+	std::string itemName = ItemEnumToString(item, itemNameEnumNumber);
+	item[itemNameEnumNumber].itemRoom = currentRoomName;
 }
 int Items::getItemLocation(Items* item,int itmNum) {
 	int temp = item[itmNum].location;
 	return temp;
-	
+}
+std::string Items::getItemLocationName(Items* item, int itemNum) {
+	return item[itemNum].itemRoom;
 }
 /*
 tries to find the item's number according to it's name
@@ -70,5 +78,13 @@ int Items::getItemNameEnum(Items* item, std::string itemname) {
 	}
 	if (itemname == "KEY") {
 		return 1;
+	}
+}
+std::string Items::ItemEnumToString(Items* item, int itemEnum) {
+	if (itemEnum == rock) {
+		return "Rock";
+	}
+	if (itemEnum == key) {
+		return "Key";
 	}
 }

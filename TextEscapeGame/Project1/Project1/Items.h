@@ -8,6 +8,7 @@ class Items
 public:
 	std::string name;
 	int location;
+	std::string itemRoom;
 	Items();
 	~Items();
 	int userInputToEnumItemLocation(Items* item, std::string);
@@ -15,6 +16,8 @@ public:
 	void setItemLocation(Items *item);
 	int getItemLocation(Items * item,int);
 	void PlayerPickup(Items* item, std::string,int);
-	void PlayerDrop(Items* item, std::string,int);
+	void PlayerDrop(Items* item, std::string,int,std::string);
+	std::string ItemEnumToString(Items* item, int);
+	std::string getItemLocationName(Items* item, int);
 
 };

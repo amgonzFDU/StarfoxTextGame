@@ -19,6 +19,8 @@ public:
 	void setCurrentRoom(Room* room, int);
 	std::string getCurrentRoomName();
 	int getCurrentRoomNumber();
+	std::string getRoomDiscription(Room*, int);
+	bool exists(Room*,int,int);
 	
 };
 

@@ -40,6 +40,7 @@ void Room::setRoom(Room* room) {
 
 	room[cell2].name.assign("cell 2");
 	room[cell2].roomNumber = cell2;
+	room[cell2].roomDiscription.assign("A cell similar to the starting cell");
 	room[cell2].RoomExit[north] = cell3;
 	room[cell2].RoomExit[south] = NONE;
 	room[cell2].RoomExit[east] = cell;
@@ -185,11 +186,13 @@ void Room::moveRoom(Room* room, int roomName,int direction){
 	int roomnum;
 	roomnum = room[roomName].RoomExit[direction];
 	//checks to see if there is a room where the player want to go
-	if (roomnum == -1) {
-		std::cout << "There is no room that way try again \n";
+	if (exists(room,roomName,direction)) {
+		setCurrentRoom(room, roomnum);
+
+		std::cout << getRoomDiscription(room, getCurrentRoomNumber()) <<std::endl;
 		return;
-	}
-	setCurrentRoom(room, roomnum);	
+	}	
+	std::cout << "There is no room that way try a different direction \n";
 }
 /*
 calls different function to set the roomname and number
@@ -218,4 +221,22 @@ std::string Room::getCurrentRoomName() {
 gets the room number your in*/
 int Room::getCurrentRoomNumber() {
 	return this->roomNumber;
+}
+std::string Room::getRoomDiscription(Room*room,int RoomName) {
+	return room[RoomName].roomDiscription;
+}
+/*
+checks to see if the room you are trying to go to exists
+input: room number and direciton
+output: true or false
+*/
+bool Room::exists(Room*room,int roomName,int direction) {
+	int roomnum;
+	roomnum = room[roomName].RoomExit[direction];
+	if (roomnum == -1) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }

@@ -8,7 +8,7 @@
 
 
 //the number of items in the game
-extern const int ITEMS = 2;
+extern const int ITEMS = 13;
 //the number of rooms in the game
 extern const int ROOMS = 22;
 //number of verbs in the game
@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
 	
 	//sets current room to the first room 0 which is the cell
 	CURRENTROOM->setCurrentRoom(room, 1);
+	std::cout << CURRENTROOM->getRoomDiscription(room,1) << std::endl;
 	
 	while (userInput != "QUIT") {
 		userInput.clear();
@@ -95,8 +96,11 @@ int main(int argc, char *argv[])
 				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 				if (userInput == "NORTH")
 				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+					
+						int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
+						CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+						
+					
 				}
 				if (userInput == "SOUTH")
 				{

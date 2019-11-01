@@ -3,8 +3,12 @@
 #include <iostream>
 // constructor
 // turns strings into numbers so rock is equal to 0 and key is equal to 1
-enum itemsname { rock, key };
-enum itemslocation{player,cell,cell2};
+enum itemsname { rock, key,scroll,candle,rope,spear,bar,chest,ring,mirror,key2,flask };
+enum itemslocation{
+	player, cell, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9
+	, cell10, cell11, cell12, cell13, cell14, cell15, cell16, cell17, cell18
+	, cell19, cell20, cell21,
+};
 Items::Items() {
 
 }
@@ -19,7 +23,48 @@ void Items::setItemLocation(Items* item) {
 	item[rock].itemRoom.assign("cell");
 
 	item[key].name.assign("KEY");
-	item[key].location = cell2;
+	item[key].location = cell;
+	item[key].itemRoom.assign("cell");
+
+	item[scroll].name.assign("SCROLL");
+	item[scroll].location = cell;
+	item[scroll].itemRoom.assign("cell");
+
+	item[candle].name.assign("CANDLE");
+	item[candle].location = cell;
+	item[candle].itemRoom.assign("cell");
+
+	item[rope].name.assign("ROPE");
+	item[rope].location = cell2;
+	item[rope].itemRoom.assign("cell2");
+
+	item[spear].name.assign("SPEAR");
+	item[spear].location = cell11;
+	item[spear].itemRoom.assign("cell11");
+
+	item[bar].name.assign("BAR");
+	item[bar].location = cell11;
+	item[bar].itemRoom.assign("cell11");
+
+	item[chest].name.assign("CHEST");
+	item[chest].location = cell9;
+	item[chest].itemRoom.assign("cell9");
+
+	item[ring].name.assign("RING");
+	item[ring].location = cell9;
+	item[ring].itemRoom.assign("cell9");
+
+	item[mirror].name.assign("MIRROR");
+	item[mirror].location = cell14;
+	item[mirror].itemRoom.assign("cell14");
+
+	item[key2].name.assign("KEY2");
+	item[key2].location = cell14;
+	item[key2].itemRoom.assign("cell14");
+
+	item[flask].name.assign("FLASK");
+	item[flask].location = cell15;
+	item[flask].itemRoom.assign("cell15");
 
 }
 /*

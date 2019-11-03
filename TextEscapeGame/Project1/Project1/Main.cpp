@@ -12,12 +12,12 @@ extern const int ITEMS = 13;
 //the number of rooms in the game
 extern const int ROOMS = 22;
 //number of verbs in the game
-extern const int VERBS = 6;
+extern const int VERBS = 10;
 //enumerator to help with item pick up
 enum itemsname { rock, key };
 //validates the input is an aproved verb
 bool validateInput(std::string userInput) {
-	std::string validInputs[VERBS] = { "GO", "USE", "THROW", "DROP", "ROOM","ITEM" };
+	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","ITEM","INVENTORY" };
 	for (int i = 0; i < VERBS; i++) {
 		if (validInputs[i] == userInput) {
 			return true;
@@ -89,34 +89,33 @@ int main(int argc, char *argv[])
 			std::cout << "Quiting \n";
 		}		
 		else{
-			if (userInput == "GO") {
-				std::cout << "Where would you like to go? \n";
-				userInput.clear();
-				std::cin >> userInput;
-				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
-				if (userInput == "NORTH")
-				{
-					
-						int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-						CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
-						
-					
-				}
-				if (userInput == "SOUTH")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
-				}
-				if (userInput == "EAST")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
-				}
-				if (userInput == "WEST")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
-				}
+			std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
+			if (userInput == "NORTH")
+			{
+				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
+				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+			}
+			else if (userInput == "SOUTH")
+			{
+				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
+				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+			}
+			else if (userInput == "EAST")
+			{
+				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
+				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+			}
+			else if (userInput == "WEST")
+			{
+				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
+				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+			}
+			else if (userInput == "INVENTORY") {
+
 			}
 			else if (userInput == "USE") {
 				std::cout << "What would you like to use?\n";
@@ -129,7 +128,6 @@ int main(int argc, char *argv[])
 				std::cout << "What Item do you want to drop?\n";
 				std::cin >> userInput;//Rock
 				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
-				
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
 				std::string CurrentRoomName = CURRENTROOM->getCurrentRoomName();
 				item->PlayerDrop(item,userInput, currentRoomNumber,CurrentRoomName);

@@ -1,0 +1,41 @@
+1 Cold, damp cell. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door.
+
+2 A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.
+
+3 Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.
+
+4 Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.
+
+5 Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.
+
+6 The narrow hallway comes to a T - intersection, with another passage running north and south. The southern hall is blocked by fallen debris that are still burning. 
+
+7 Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see. 
+ 
+8 It is too dark to see further, proceeding would be unwise.
+
+8 There is a partially broken staircase leading downward. With the candle light, navigating it is possible. Something is strangely off about the wall to the north
+
+9 A dirty dungeon littered with bones, there is an enormous boar guarding a chest.
+
+10 Large open room lit by a chandelier hung from the tall ceiling. 
+
+11 Room clearly appears to be an armory but seems rather empty with broken weapon and armor fragments scattered about the room. There is one spear that remains intact and an iron bar that was once part of a baton.
+
+12 Large outdoor courtyard enclosed by tall Stone walls. There is a bridge in the middle of the courtyard that spans a strange abyss.
+
+13 The north side of the outdoor courtyard, there is a large wooden door ahead and a balcony up to the east with a hook extended from the bottom.
+
+14 A bedroom, furnished quite lavishly. On the dresser is a mirror and a large key. There is a door at the opposite end of the room (locked).
+
+15 Cold misty room with many barrels, a large cauldron, and a sort of brewing stand supporting a flask of a strange, unknown substance. 
+
+16 Dusty dark wine cellar. The room is thick with tough webs, especially at the mouth of a door to the east.
+
+17 small dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.
+
+18  Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.
+
+19  Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.
+
+20 small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder.

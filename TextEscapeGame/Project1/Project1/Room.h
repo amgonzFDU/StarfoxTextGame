@@ -20,6 +20,7 @@ public:
 	std::string getCurrentRoomName();
 	int getCurrentRoomNumber();
 	std::string getRoomDiscription(Room*, int);
+	std::string setRoomDiscription(int);
 	bool exists(Room*,int,int);
 	
 };

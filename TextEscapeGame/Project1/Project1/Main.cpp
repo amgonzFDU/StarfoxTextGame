@@ -12,12 +12,12 @@ extern const int ITEMS = 13;
 //the number of rooms in the game
 extern const int ROOMS = 22;
 //number of verbs in the game
-extern const int VERBS = 10;
+extern const int VERBS = 11;
 //enumerator to help with item pick up
 enum itemsname { rock, key };
 //validates the input is an aproved verb
 bool validateInput(std::string userInput) {
-	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","ITEM","INVENTORY" };
+	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","ITEM","INVENTORY","HELP" };
 	for (int i = 0; i < VERBS; i++) {
 		if (validInputs[i] == userInput) {
 			return true;
@@ -48,7 +48,8 @@ int main(int argc, char *argv[])
     std::cin >> name;
 	Player* MainPlayer = new Player(name);
 
-	std::cout << "Hello there " + MainPlayer->getName(); + ". \n";
+	std::cout << "Hello there " + MainPlayer->getName(); + "";
+	std::cout << " you can type 'help' for a list of rules and commands.\n";
 	std::cout << "\n";
 
 	std::string userInput;
@@ -117,6 +118,11 @@ int main(int argc, char *argv[])
 			else if (userInput == "INVENTORY") {
 
 			}
+			else if (userInput == "HELP") {
+				std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
+				std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
+				std::cout << "Type: 'Room' if you need to see what room you are in.\n";
+			}	
 			else if (userInput == "USE") {
 				std::cout << "What would you like to use?\n";
 			}
@@ -158,54 +164,7 @@ int main(int argc, char *argv[])
 				
 	}
 	
-	// old input validation
-	/*
-				if (userInput == "NORTH")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
-				}
-				if (userInput == "SOUTH")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
-				}
-				if (userInput == "EAST")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
-				}
-				if(userInput == "WEST")
-				{
-					int currentRoomNumber = CURRENTROOM->getCurrentRoom();
-					CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
-				}
-
-
-				else if (userInput == "USE") {
-					std::cout << "What would you like to use?\n";
-				}
-				else if (userInput == "THROW") {
-					std::cout << "What would you like to throw?\n";
-				}
-				else if (userInput == "DROP") {
-					std::cout << "What would you like to drop?\n";
-				}
-				else if (userInput == "ROOM")
-				{
-					std::cout << "The room is: " << CURRENTROOM->getCurrentRoom() << "\n";
-				}
-				else if (userInput == "ITEM")
-				{
-					std::cout << "rock IS in room " << item->getItemLocation(item, 0) << "\n";
-					std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
-				}
-
-				else{
-					std::cout << "Not a valid input\n";
-				}
-				userInput.clear();
-				*/
+	
 	
 	std::cout << "Goodbye.";
 	std::cin.get();

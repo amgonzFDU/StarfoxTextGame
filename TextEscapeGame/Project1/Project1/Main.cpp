@@ -124,6 +124,7 @@ int main(int argc, char *argv[])
 				std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
 				std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
 				std::cout << "Type: 'Room' if you need to see what room you are in.\n";
+				std::cout << "Type: 'item' to pick up items and 'drop' to drop them\n";
 			}	
 			else if (userInput == "USE") {
 				std::cout << "What would you like to use?\n";
@@ -156,9 +157,6 @@ int main(int argc, char *argv[])
 				so if they type rock it should go in as a number*/
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
 				item->PlayerPickup(item, userInput,currentRoomNumber);
-				
-				std::cout << "rock is in room " << item->getItemLocationName(item, 0) << "\n";
-				//std::cout << "key IS in room " << item->getItemLocation(item, 1) << "\n";
 			}
 			
 		}

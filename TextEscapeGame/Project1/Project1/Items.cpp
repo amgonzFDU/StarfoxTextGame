@@ -95,6 +95,7 @@ int Items::getItemLocation(Items* item,int itmNum) {
 	int temp = item[itmNum].location;
 	return temp;
 }
+
 std::string Items::getItemLocationName(Items* item, int itemNum) {
 	return item[itemNum].itemRoom;
 }
@@ -125,11 +126,24 @@ int Items::getItemNameEnum(Items* item, std::string itemname) {
 		return 1;
 	}
 }
+//turns the players input into a string based on it's enum number
 std::string Items::ItemEnumToString(Items* item, int itemEnum) {
 	if (itemEnum == rock) {
 		return "Rock";
 	}
 	if (itemEnum == key) {
 		return "Key";
+	}
+}
+/*
+outputs the players inventory
+Jira Issue # Fox-139
+*/
+void Items::outputPlayerItems(Items* item) {
+	for (int i = 0; i <= flask; i++) {
+		if (item[i].location == player) {
+			std::cout << "Your Inventory" << std::endl;
+			std::cout << item[i].name<<std::endl;
+		}
 	}
 }

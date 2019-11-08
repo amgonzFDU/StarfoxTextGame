@@ -117,6 +117,8 @@ int main(int argc, char *argv[])
 			}
 			else if (userInput == "INVENTORY") {
 
+				item->outputPlayerItems(item);
+
 			}
 			else if (userInput == "HELP") {
 				std::cout << "All you need to do is try to get out, can you make it to the exit? \n";

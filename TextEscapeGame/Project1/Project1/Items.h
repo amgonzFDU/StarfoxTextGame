@@ -19,5 +19,6 @@ public:
 	void PlayerDrop(Items* item, std::string,int,std::string);
 	std::string ItemEnumToString(Items* item, int);
 	std::string getItemLocationName(Items* item, int);
+	void outputPlayerItems(Items*);
 
 };

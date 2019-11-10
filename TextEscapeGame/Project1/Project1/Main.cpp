@@ -17,7 +17,7 @@ extern const int VERBS = 11;
 enum itemsname { rock, key };
 //validates the input is an aproved verb
 bool validateInput(std::string userInput) {
-	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","ITEM","INVENTORY","HELP" };
+	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","GET","INVENTORY","HELP" };
 	for (int i = 0; i < VERBS; i++) {
 		if (validInputs[i] == userInput) {
 			return true;
@@ -128,9 +128,23 @@ int main(int argc, char *argv[])
 			}	
 			else if (userInput == "USE") {
 				std::cout << "What would you like to use?\n";
+				
+				/*
+				userInput.clear();
+				std::cin >> Item //input item being used
+				std::cout << "What would you like to use" + Item + "on? \n";
+				std::cin >> Lock //what the item is being used on
+				// some to be made function to that inputs Item and Lock and will edit the board adn change room diolog
+				Item.clear();
+				Lock.clear();
+				*/
+				
 			}
 			else if (userInput == "THROW") {
 				std::cout << "What would you like to throw?\n";
+				
+				//will have very similar code to use referance that for details when ready.
+				
 			}
 			else if (userInput == "DROP") {
 				userInput.clear();
@@ -144,7 +158,7 @@ int main(int argc, char *argv[])
 			else if (userInput == "ROOM") {
 				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
 			}
-			else if (userInput == "ITEM")//pick up
+			else if (userInput == "GET")//pick up
 			{
 				userInput.clear();
 				std::cout << "What Item do you want to pick up?\n";

@@ -278,3 +278,17 @@ bool Room::exists(Room*room,int roomName,int direction) {
 		return true;
 	}
 }
+/*
+	Assigns next room to NONE unless the user has
+	the necessary items to get to the next room.
+	bool Room::PuzzleSolved(Room*room,int roomName,int direction)
+	int roomnum;
+	roomnum = room[roomName].RoomExit[direction];
+	if(itemUsed){
+		room[cell].RoomExit[west] = cell2;
+	}
+	else{
+		room[cell].RoomExit[west] = NONE;
+	}
+*/
+

@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 	std::cout << CURRENTROOM->getRoomDiscription(room,1) << std::endl;
 	
 	while (userInput != "QUIT") {
+	while (userInput != "QUIT") {
 		userInput.clear();
 		std::cout << "What do you want to do?\n";
 		std::cin >> userInput;
@@ -119,6 +120,11 @@ int main(int argc, char *argv[])
 			}
 			else if (userInput == "USE") {
 				std::cout << "What would you like to use?\n";
+				std::cin >> userInput; //Key
+				/*bool puzzleSovled = Items->ItemUsed(userinput);
+				if(puzzleSovled == true){
+					"you may now go to the next room"
+				}*/
 			}
 			else if (userInput == "THROW") {
 				std::cout << "What would you like to throw?\n";

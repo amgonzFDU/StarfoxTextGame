@@ -133,3 +133,21 @@ std::string Items::ItemEnumToString(Items* item, int itemEnum) {
 		return "Key";
 	}
 }
+/*
+bool Items::ItemUsed(Items* item,int itemEnum){
+	if (inventory contains item){
+		string currentRoom = getCurrentRoom();
+		if(currentRoom can use item){
+			unlock puzzle;
+			return true;
+		}
+		else{
+			std::cout -> "item can not be used here"
+			return false
+		}
+	}
+	else{
+		std::cout -> "item is not in inventory"
+	}
+	return false;
+}*/

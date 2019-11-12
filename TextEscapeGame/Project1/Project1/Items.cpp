@@ -83,7 +83,8 @@ void Items::PlayerPickup(Items* item, std::string userInput,int currentRoom) {
 		item[itemNameEnumNumber].itemRoom.assign("Player");
 	}
 }
-// If the player wants to drop an item then we get what room they are in and set that to the item;
+// If the player wants to drop an item then we get what room 
+// they are in and set that to the item;
 void Items::PlayerDrop(Items* item, std::string userInput, int currentRoomNumber,std::string currentRoomName) {
 	
 	int itemNameEnumNumber = getItemNameEnum(item, userInput);
@@ -104,8 +105,8 @@ std::string Items::getItemLocationName(Items* item, int itemNum) {
 tries to find the item's number according to it's name
 so if the user enters ROCK it should output a number 
 acoridng to rock in the enum
-output::
-enum in the itemslocation
+input:: itemname (from user input)
+output:: item's location as a number
 */
 
 int Items::userInputToEnumItemLocation(Items* item, std::string itmname) {
@@ -114,24 +115,18 @@ int Items::userInputToEnumItemLocation(Items* item, std::string itmname) {
 		if (itmname == item[i].name) {
 			return getItemLocation(item, i);
 		}
-	}/*
-	if (itmname == "ROCK") {
-		return getItemLocation(item, 0);
 	}
-	if (itmname == "KEY") {
-		return getItemLocation(item, 1);
-	}
-	if (itmname == "ROCK") {
-		return getItemLocation(item, 0);
-	}
-	if (itmname == "KEY") {
-		return getItemLocation(item, 1);
-	}
-	*/
 	std::cout << "You did not spell that right or item doesn't exist \n";
 	return -1;
 	
 }
+/*
+returns the item's number example key is related to 1
+input:
+itemname (from user input)
+outputs:
+The number that represents that item
+*/
 int Items::getItemNameEnum(Items* item, std::string itemname) {
 	
 	for (int i = 0; i < sizeofitems; i++) {

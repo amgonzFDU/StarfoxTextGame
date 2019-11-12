@@ -220,7 +220,7 @@ void Room::setRoom(Room* room) {
 
 
 }
-void Room::moveRoom(Room* room, int roomName,int direction){
+void Room::moveRoom(Room* room, int roomName,int direction,Items* items){
 	//lets us use functions from item class 
 	
 	int roomnum;
@@ -230,7 +230,8 @@ void Room::moveRoom(Room* room, int roomName,int direction){
 		setCurrentRoom(room, roomnum);
 
 		std::cout << getRoomDiscription(room, getCurrentRoomNumber()) <<std::endl;
-		
+		Items item;
+		item.outputRoomItems(items, getCurrentRoomNumber());
 		return;
 	}	
 	std::cout << "There is no room that way try a different direction \n";

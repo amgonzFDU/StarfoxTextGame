@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
+#include "Items.h"
 class Room
 {
 	friend class Items;
 public:
+	Items item;
 	std::string name;
 	std::string roomDiscription;
 	std::string currentRoom;
@@ -12,7 +14,7 @@ public:
 	Room(Room* room, int);
 	Room();
 	~Room();
-	void moveRoom(Room* room,int,int);
+	void moveRoom(Room* room,int,int,Items*);
 	void setRoom(Room* room);
 	void setCurrentRoomName(Room* room, int);
 	void setCurrentRoomNumber(Room* room, int);

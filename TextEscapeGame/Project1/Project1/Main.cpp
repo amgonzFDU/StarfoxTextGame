@@ -94,26 +94,27 @@ int main(int argc, char *argv[])
 			if (userInput == "NORTH")
 			{
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-				CURRENTROOM->moveRoom(room, currentRoomNumber, 0);
-				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 0, item);
+				//std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
 			}
 			else if (userInput == "SOUTH")
 			{
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-				CURRENTROOM->moveRoom(room, currentRoomNumber, 1);
-				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 1, item);
+				//std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
 			}
 			else if (userInput == "EAST")
 			{
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-				CURRENTROOM->moveRoom(room, currentRoomNumber, 2);
-				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 2, item);
+				//std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
 			}
 			else if (userInput == "WEST")
 			{
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
-				CURRENTROOM->moveRoom(room, currentRoomNumber, 3);
-				std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+				CURRENTROOM->moveRoom(room, currentRoomNumber, 3, item);
+				//std::cout << "The room is: " << CURRENTROOM->getCurrentRoomName() << "\n";
+				
 			}
 			else if (userInput == "INVENTORY") {
 
@@ -124,7 +125,7 @@ int main(int argc, char *argv[])
 				std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
 				std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
 				std::cout << "Type: 'Room' if you need to see what room you are in.\n";
-				std::cout << "Type: 'item' to pick up items and 'drop' to drop them\n";
+				std::cout << "Type: 'get' to pick up items and 'drop' to drop them\n";
 			}	
 			else if (userInput == "USE") {
 				std::cout << "What would you like to use?\n";

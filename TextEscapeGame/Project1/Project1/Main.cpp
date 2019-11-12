@@ -182,7 +182,6 @@ int main(int argc, char *argv[])
 	
 	
 	std::cout << "Goodbye.";
-	std::cin.get();
-	std::cin.get();
+	exit(0);
 	return 0;
 }

@@ -5,9 +5,9 @@
 #include <fstream>
 
 enum RoomNames {
-	player, cell, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9
-	, cell10, cell11, cell12, cell13, cell14, cell15, cell16, cell17, cell18
-	, cell19, cell20, cell21,
+	player, Dungeon, lockedcell, cellblock1, cellblock2, cellblock3,CellBlockCrossRoads,CellBlock4, BrokenStairway, BoneFilledDungeon
+	, BallRoom, Armory ,SouthCourtYard, NorthCourtYard, Bedroom, AlchemistsLab, WineCellar, StorageRoom, DirtTunnel1, DirtTunnel2
+	, UnderGroundChamber, YouHaveEscaped,numberofrooms
 };
 enum directions {north,south,east,west};
 const int NONE = -1;
@@ -50,173 +50,173 @@ void Room::setRoom(Room* room) {
 	
 	//sets the name and exits of the rooms
 	//all the names are equal to numbers in the enumerator
-	room[cell].name.assign("Cell 1");
-	room[cell].roomNumber = cell;
-	room[cell].roomDiscription.assign("Cold, damp cell. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door.");
-	room[cell].RoomExit[north] = NONE;
-	room[cell].RoomExit[south] = NONE;
-	room[cell].RoomExit[east] = NONE;
-	room[cell].RoomExit[west] = cell2;
+	room[Dungeon].name.assign("Dungeon");
+	room[Dungeon].roomNumber = Dungeon;
+	room[Dungeon].roomDiscription.assign("Cold, damp cell. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door.");
+	room[Dungeon].RoomExit[north] = NONE;
+	room[Dungeon].RoomExit[south] = NONE;
+	room[Dungeon].RoomExit[east] = NONE;
+	room[Dungeon].RoomExit[west] = lockedcell;
 
-	room[cell2].name.assign("cell 2");
-	room[cell2].roomNumber = cell2;
-	room[cell2].roomDiscription.assign("A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
-	room[cell2].RoomExit[north] = cell3;
-	room[cell2].RoomExit[south] = NONE;
-	room[cell2].RoomExit[east] = cell;
-	room[cell2].RoomExit[west] = NONE;
+	room[lockedcell].name.assign("Locked Cell");
+	room[lockedcell].roomNumber = lockedcell;
+	room[lockedcell].roomDiscription.assign("A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
+	room[lockedcell].RoomExit[north] = cellblock1;
+	room[lockedcell].RoomExit[south] = NONE;
+	room[lockedcell].RoomExit[east] = Dungeon;
+	room[lockedcell].RoomExit[west] = NONE;
 
-	room[cell3].name.assign("cell 3");
-	room[cell3].roomNumber = cell3;
-	room[cell3].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cell3].RoomExit[north] = NONE;
-	room[cell3].RoomExit[south] = cell2;
-	room[cell3].RoomExit[east] = cell7;
-	room[cell3].RoomExit[west] = cell4;
+	room[cellblock1].name.assign("Cell Block 1");
+	room[cellblock1].roomNumber = cellblock1;
+	room[cellblock1].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock1].RoomExit[north] = NONE;
+	room[cellblock1].RoomExit[south] = lockedcell;
+	room[cellblock1].RoomExit[east] = CellBlock4;
+	room[cellblock1].RoomExit[west] = cellblock2;
 	
-	room[cell4].name.assign("cell 4");
-	room[cell4].roomNumber = cell4;
-	room[cell4].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cell4].RoomExit[north] = NONE;
-	room[cell4].RoomExit[south] = NONE;
-	room[cell4].RoomExit[east] = cell3;
-	room[cell4].RoomExit[west] = cell5;
+	room[cellblock2].name.assign("Cell Block 2");
+	room[cellblock2].roomNumber = cellblock2;
+	room[cellblock2].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock2].RoomExit[north] = NONE;
+	room[cellblock2].RoomExit[south] = NONE;
+	room[cellblock2].RoomExit[east] = cellblock1;
+	room[cellblock2].RoomExit[west] = cellblock3;
 
-	room[cell5].name.assign("cell 5");
-	room[cell5].roomNumber = cell5;
-	room[cell5].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cell5].RoomExit[north] = NONE;
-	room[cell5].RoomExit[south] = NONE;
-	room[cell5].RoomExit[east] = cell4;
-	room[cell5].RoomExit[west] = cell6;
+	room[cellblock3].name.assign("Cell Block 3");
+	room[cellblock3].roomNumber = cellblock3;
+	room[cellblock3].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock3].RoomExit[north] = NONE;
+	room[cellblock3].RoomExit[south] = NONE;
+	room[cellblock3].RoomExit[east] = cellblock2;
+	room[cellblock3].RoomExit[west] = CellBlockCrossRoads;
 
-	room[cell6].name.assign("cell 6");
-	room[cell6].roomNumber = cell6;
-	room[cell6].roomDiscription.assign("The narrow hallway comes to a T - intersection, with another passage running north and south. The southern hall is blocked by fallen debris that are still burning.");
-	room[cell6].RoomExit[north] = cell10;
-	room[cell6].RoomExit[south] = NONE;
-	room[cell6].RoomExit[east] = cell5;
-	room[cell6].RoomExit[west] = NONE;
+	room[CellBlockCrossRoads].name.assign("Cell Block Cross Roads");
+	room[CellBlockCrossRoads].roomNumber = CellBlockCrossRoads;
+	room[CellBlockCrossRoads].roomDiscription.assign("The narrow hallway comes to a T - intersection, with another passage running north and south. The southern hall is blocked by fallen debris that are still burning.");
+	room[CellBlockCrossRoads].RoomExit[north] = BallRoom;
+	room[CellBlockCrossRoads].RoomExit[south] = NONE;
+	room[CellBlockCrossRoads].RoomExit[east] = cellblock3;
+	room[CellBlockCrossRoads].RoomExit[west] = NONE;
 
-	room[cell7].name.assign("cell 7");
-	room[cell7].roomNumber = cell7;
-	room[cell7].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cell7].RoomExit[north] = NONE;
-	room[cell7].RoomExit[south] = NONE;
-	room[cell7].RoomExit[east] = cell8;
-	room[cell7].RoomExit[west] = cell3;
+	room[CellBlock4].name.assign("Cell Block 4");
+	room[CellBlock4].roomNumber = CellBlock4;
+	room[CellBlock4].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[CellBlock4].RoomExit[north] = NONE;
+	room[CellBlock4].RoomExit[south] = NONE;
+	room[CellBlock4].RoomExit[east] = BrokenStairway;
+	room[CellBlock4].RoomExit[west] = cellblock1;
 	
-	room[cell8].name.assign("cell 8");
-	room[cell8].roomNumber = cell8;
-	room[cell8].roomDiscription.assign("It is too dark to see further, proceeding would be unwise.");
-	room[cell8].RoomExit[north] = cell16;
-	room[cell8].RoomExit[south] = NONE;
-	room[cell8].RoomExit[east] = cell9;
-	room[cell8].RoomExit[west] = cell7;
+	room[BrokenStairway].name.assign("Broken Stairway");
+	room[BrokenStairway].roomNumber = BrokenStairway;
+	room[BrokenStairway].roomDiscription.assign("It is too dark to see further, proceeding would be unwise.");
+	room[BrokenStairway].RoomExit[north] = WineCellar;
+	room[BrokenStairway].RoomExit[south] = NONE;
+	room[BrokenStairway].RoomExit[east] = BoneFilledDungeon;
+	room[BrokenStairway].RoomExit[west] = CellBlock4;
 
-	room[cell9].name.assign("cell 9");
-	room[cell9].roomNumber = cell9; 
-	room[cell9].roomDiscription.assign("A dirty dungeon littered with bones, there is an enormous boar guarding a chest.");
-	room[cell9].RoomExit[north] = NONE;
-	room[cell9].RoomExit[south] = NONE;
-	room[cell9].RoomExit[east] = NONE;
-	room[cell9].RoomExit[west] = cell8;
+	room[BoneFilledDungeon].name.assign("Bone Filled Dungeon");
+	room[BoneFilledDungeon].roomNumber = BoneFilledDungeon; 
+	room[BoneFilledDungeon].roomDiscription.assign("A dirty dungeon littered with bones, there is an enormous boar guarding a chest.");
+	room[BoneFilledDungeon].RoomExit[north] = NONE;
+	room[BoneFilledDungeon].RoomExit[south] = NONE;
+	room[BoneFilledDungeon].RoomExit[east] = NONE;
+	room[BoneFilledDungeon].RoomExit[west] = BrokenStairway;
 	
-	room[cell10].name.assign("cell 10");
-	room[cell10].roomNumber = cell10;
-	room[cell10].roomDiscription.assign("Large open room lit by a chandelier hung from the tall ceiling.");
-	room[cell10].RoomExit[north] = cell12;
-	room[cell10].RoomExit[south] = cell6;
-	room[cell10].RoomExit[east] = cell11;
-	room[cell10].RoomExit[west] = NONE;
+	room[BallRoom].name.assign("Ballroom");
+	room[BallRoom].roomNumber = BallRoom;
+	room[BallRoom].roomDiscription.assign("Large open room lit by a chandelier hung from the tall ceiling.");
+	room[BallRoom].RoomExit[north] = SouthCourtYard;
+	room[BallRoom].RoomExit[south] = CellBlockCrossRoads;
+	room[BallRoom].RoomExit[east] = Armory;
+	room[BallRoom].RoomExit[west] = NONE;
 
-	room[cell11].name.assign("cell 11");
-	room[cell11].roomNumber = cell11;
-	room[cell11].roomDiscription.assign("Room clearly appears to be an armory but seems rather empty with broken weapon and armor fragments scattered about the room. There is one spear that remains intact and an iron bar that was once part of a baton.");
-	room[cell11].RoomExit[north] = NONE;
-	room[cell11].RoomExit[south] = NONE;
-	room[cell11].RoomExit[east] = NONE;
-	room[cell11].RoomExit[west] = cell10;
+	room[Armory].name.assign("Armory");
+	room[Armory].roomNumber = Armory;
+	room[Armory].roomDiscription.assign("Room clearly appears to be an armory but seems rather empty with broken weapon and armor fragments scattered about the room. There is one spear that remains intact and an iron bar that was once part of a baton.");
+	room[Armory].RoomExit[north] = NONE;
+	room[Armory].RoomExit[south] = NONE;
+	room[Armory].RoomExit[east] = NONE;
+	room[Armory].RoomExit[west] = BallRoom;
 
-	room[cell12].name.assign("cell 12");
-	room[cell12].roomNumber = cell12;
-	room[cell12].roomDiscription.assign("Large outdoor courtyard enclosed by tall Stone walls. There is a bridge in the middle of the courtyard that spans a strange abyss.");
-	room[cell12].RoomExit[north] = cell13;
-	room[cell12].RoomExit[south] = cell10;
-	room[cell12].RoomExit[east] = NONE;
-	room[cell12].RoomExit[west] = NONE;
+	room[SouthCourtYard].name.assign("South Court Yard");
+	room[SouthCourtYard].roomNumber = SouthCourtYard;
+	room[SouthCourtYard].roomDiscription.assign("Large outdoor courtyard enclosed by tall Stone walls. There is a bridge in the middle of the courtyard that spans a strange abyss.");
+	room[SouthCourtYard].RoomExit[north] = NorthCourtYard;
+	room[SouthCourtYard].RoomExit[south] = BallRoom;
+	room[SouthCourtYard].RoomExit[east] = NONE;
+	room[SouthCourtYard].RoomExit[west] = NONE;
 
-	room[cell13].name.assign("cell 13");
-	room[cell13].roomDiscription.assign("The north side of the outdoor courtyard, there is a large wooden door ahead and a balcony up to the east with a hook extended from the bottom.");
-	room[cell13].roomNumber = cell13;
-	room[cell13].RoomExit[north] = cell15;
-	room[cell13].RoomExit[south] = cell12;
-	room[cell13].RoomExit[east] = cell14;
-	room[cell13].RoomExit[west] = NONE;
+	room[NorthCourtYard].name.assign("North Court Yard");
+	room[NorthCourtYard].roomDiscription.assign("The north side of the outdoor courtyard, there is a large wooden door ahead and a balcony up to the east with a hook extended from the bottom.");
+	room[NorthCourtYard].roomNumber = NorthCourtYard;
+	room[NorthCourtYard].RoomExit[north] = AlchemistsLab;
+	room[NorthCourtYard].RoomExit[south] = SouthCourtYard;
+	room[NorthCourtYard].RoomExit[east] = Bedroom;
+	room[NorthCourtYard].RoomExit[west] = NONE;
 
-	room[cell14].name.assign("cell 14");
-	room[cell14].roomNumber = cell14;
-	room[cell14].roomDiscription.assign("A bedroom, furnished quite lavishly. On the dresser is a mirror and a large key. There is a door at the opposite end of the room (locked).");
-	room[cell14].RoomExit[north] = NONE;
-	room[cell14].RoomExit[south] = NONE;
-	room[cell14].RoomExit[east] = NONE;
-	room[cell14].RoomExit[west] = cell12;
+	room[Bedroom].name.assign("Bedroom");
+	room[Bedroom].roomNumber = Bedroom;
+	room[Bedroom].roomDiscription.assign("A bedroom, furnished quite lavishly. On the dresser is a mirror and a large key. There is a door at the opposite end of the room (locked).");
+	room[Bedroom].RoomExit[north] = NONE;
+	room[Bedroom].RoomExit[south] = NONE;
+	room[Bedroom].RoomExit[east] = NONE;
+	room[Bedroom].RoomExit[west] = SouthCourtYard;
 
-	room[cell15].name.assign("cell 15");
-	room[cell15].roomNumber = cell15;
-	room[cell15].roomDiscription.assign("Cold misty room with many barrels, a large cauldron, and a sort of brewing stand supporting a flask of a strange, unknown substance.");
-	room[cell15].RoomExit[north] = NONE;
-	room[cell15].RoomExit[south] = cell13;
-	room[cell15].RoomExit[east] = NONE;
-	room[cell15].RoomExit[west] = NONE;
+	room[AlchemistsLab].name.assign("cell 15");
+	room[AlchemistsLab].roomNumber = AlchemistsLab;
+	room[AlchemistsLab].roomDiscription.assign("Cold misty room with many barrels, a large cauldron, and a sort of brewing stand supporting a flask of a strange, unknown substance.");
+	room[AlchemistsLab].RoomExit[north] = NONE;
+	room[AlchemistsLab].RoomExit[south] = NorthCourtYard;
+	room[AlchemistsLab].RoomExit[east] = NONE;
+	room[AlchemistsLab].RoomExit[west] = NONE;
 
-	room[cell16].name.assign("cell 16");
-	room[cell16].roomNumber = cell16;
-	room[cell16].roomDiscription.assign("Dusty dark wine cellar. The room is thick with tough webs, especially at the mouth of a door to the east.");
-	room[cell16].RoomExit[north] = NONE;
-	room[cell16].RoomExit[south] = cell8;
-	room[cell16].RoomExit[east] = cell17;
-	room[cell16].RoomExit[west] = NONE;
+	room[WineCellar].name.assign("Wine Cellar");
+	room[WineCellar].roomNumber = WineCellar;
+	room[WineCellar].roomDiscription.assign("Dusty dark wine cellar. The room is thick with tough webs, especially at the mouth of a door to the east.");
+	room[WineCellar].RoomExit[north] = NONE;
+	room[WineCellar].RoomExit[south] = BrokenStairway;
+	room[WineCellar].RoomExit[east] = StorageRoom;
+	room[WineCellar].RoomExit[west] = NONE;
 
-	room[cell17].name.assign("cell 17");
-	room[cell17].roomNumber = cell17;
-	room[cell17].roomDiscription.assign(" small dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.");
-	room[cell17].RoomExit[north] = NONE;
-	room[cell17].RoomExit[south] = NONE;
-	room[cell17].RoomExit[east] = cell18;
-	room[cell17].RoomExit[west] = cell16;
+	room[StorageRoom].name.assign("Storage Room");
+	room[StorageRoom].roomNumber = StorageRoom;
+	room[StorageRoom].roomDiscription.assign(" small dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.");
+	room[StorageRoom].RoomExit[north] = NONE;
+	room[StorageRoom].RoomExit[south] = NONE;
+	room[StorageRoom].RoomExit[east] = DirtTunnel1;
+	room[StorageRoom].RoomExit[west] = WineCellar;
 
-	room[cell18].name.assign("cell 18");
-	room[cell18].roomNumber = cell18;
-	room[cell18].RoomExit[north] = NONE;
-	room[cell18].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
-	room[cell18].RoomExit[south] = NONE;
-	room[cell18].RoomExit[east] = cell18;
-	room[cell18].RoomExit[west] = cell17;
+	room[DirtTunnel1].name.assign("Dirt Tunnel Entrance");
+	room[DirtTunnel1].roomNumber = DirtTunnel1;
+	room[DirtTunnel1].RoomExit[north] = NONE;
+	room[DirtTunnel1].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
+	room[DirtTunnel1].RoomExit[south] = NONE;
+	room[DirtTunnel1].RoomExit[east] = DirtTunnel1;
+	room[DirtTunnel1].RoomExit[west] = StorageRoom;
 
-	room[cell19].name.assign("cell 19");
-	room[cell19].roomNumber = cell19;
-	room[cell19].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
-	room[cell19].RoomExit[north] = NONE;
-	room[cell19].RoomExit[south] = NONE;
-	room[cell19].RoomExit[east] = cell20;
-	room[cell19].RoomExit[west] = cell18;
+	room[DirtTunnel2].name.assign("Dirt Tunnel Exit");
+	room[DirtTunnel2].roomNumber = DirtTunnel2;
+	room[DirtTunnel2].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
+	room[DirtTunnel2].RoomExit[north] = NONE;
+	room[DirtTunnel2].RoomExit[south] = NONE;
+	room[DirtTunnel2].RoomExit[east] = UnderGroundChamber;
+	room[DirtTunnel2].RoomExit[west] = DirtTunnel1;
 
-	room[cell20].name.assign("cell 20");
-	room[cell20].roomNumber = cell20;
-	room[cell20].roomDiscription.assign("small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder.");
-	room[cell20].RoomExit[north] = NONE;
-	room[cell20].RoomExit[south] = cell21;
-	room[cell20].RoomExit[east] = NONE;
-	room[cell20].RoomExit[west] = cell19;
+	room[UnderGroundChamber].name.assign("Under Ground Chamber");
+	room[UnderGroundChamber].roomNumber = UnderGroundChamber;
+	room[UnderGroundChamber].roomDiscription.assign("small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder.");
+	room[UnderGroundChamber].RoomExit[north] = NONE;
+	room[UnderGroundChamber].RoomExit[south] = YouHaveEscaped;
+	room[UnderGroundChamber].RoomExit[east] = NONE;
+	room[UnderGroundChamber].RoomExit[west] = DirtTunnel2;
 
-	room[cell21].name.assign("cell 21");
-	room[cell21].roomNumber = cell21;
-	room[cell20].roomDiscription.assign("You Win");
-	room[cell21].RoomExit[north] = cell20;
-	room[cell21].RoomExit[south] = NONE;
-	room[cell21].RoomExit[east] = NONE;
-	room[cell21].RoomExit[west] = NONE;
+	room[YouHaveEscaped].name.assign("You Have Escaped");
+	room[YouHaveEscaped].roomNumber = YouHaveEscaped;
+	room[YouHaveEscaped].roomDiscription.assign("You Win");
+	room[YouHaveEscaped].RoomExit[north] = UnderGroundChamber;
+	room[YouHaveEscaped].RoomExit[south] = NONE;
+	room[YouHaveEscaped].RoomExit[east] = NONE;
+	room[YouHaveEscaped].RoomExit[west] = NONE;
 
 
 }

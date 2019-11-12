@@ -6,7 +6,7 @@
 
 enum RoomNames {
 	player, Dungeon, lockedcell, cellblocka765, cellblock6mk5, cellblock88f7,CellBlockCrossRoads,cellblock25k6, BrokenStairway, BoneFilledDungeon
-	, BallRoom, Armory ,SouthCourtYard, NorthCourtYard, Bedroom, AlchemistsLab, WineCellar, StorageRoom, DirtTunnel1, DirtTunnel2
+	, BallRoom, Armory ,SouthCourtYard, NorthCourtYard, Bedroom, AlchemistsLab, WineCellar, StorageRoom, DirtPassageway, DirtTunnel
 	, UnderGroundChamber, YouHaveEscaped,numberofrooms
 };
 enum directions {north,south,east,west};
@@ -66,7 +66,7 @@ void Room::setRoom(Room* room) {
 	room[lockedcell].RoomExit[east] = Dungeon;
 	room[lockedcell].RoomExit[west] = NONE;
 
-	room[cellblocka765].name.assign("Cell Block 1");
+	room[cellblocka765].name.assign("Cell Block A765");
 	room[cellblocka765].roomNumber = cellblocka765;
 	room[cellblocka765].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
 	room[cellblocka765].RoomExit[north] = NONE;
@@ -74,7 +74,7 @@ void Room::setRoom(Room* room) {
 	room[cellblocka765].RoomExit[east] = cellblock25k6;
 	room[cellblocka765].RoomExit[west] = cellblock6mk5;
 	
-	room[cellblock6mk5].name.assign("Cell Block 2");
+	room[cellblock6mk5].name.assign("Cell Block 6mk5");
 	room[cellblock6mk5].roomNumber = cellblock6mk5;
 	room[cellblock6mk5].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
 	room[cellblock6mk5].RoomExit[north] = NONE;
@@ -82,7 +82,7 @@ void Room::setRoom(Room* room) {
 	room[cellblock6mk5].RoomExit[east] = cellblocka765;
 	room[cellblock6mk5].RoomExit[west] = cellblock88f7;
 
-	room[cellblock88f7].name.assign("Cell Block 3");
+	room[cellblock88f7].name.assign("Cell Block 88f7");
 	room[cellblock88f7].roomNumber = cellblock88f7;
 	room[cellblock88f7].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
 	room[cellblock88f7].RoomExit[north] = NONE;
@@ -98,7 +98,7 @@ void Room::setRoom(Room* room) {
 	room[CellBlockCrossRoads].RoomExit[east] = cellblock88f7;
 	room[CellBlockCrossRoads].RoomExit[west] = NONE;
 
-	room[cellblock25k6].name.assign("Cell Block 4");
+	room[cellblock25k6].name.assign("Cell Block 25k6");
 	room[cellblock25k6].roomNumber = cellblock25k6;
 	room[cellblock25k6].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
 	room[cellblock25k6].RoomExit[north] = NONE;
@@ -183,24 +183,24 @@ void Room::setRoom(Room* room) {
 	room[StorageRoom].roomDiscription.assign(" small dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.");
 	room[StorageRoom].RoomExit[north] = NONE;
 	room[StorageRoom].RoomExit[south] = NONE;
-	room[StorageRoom].RoomExit[east] = DirtTunnel1;
+	room[StorageRoom].RoomExit[east] = DirtPassageway;
 	room[StorageRoom].RoomExit[west] = WineCellar;
 
-	room[DirtTunnel1].name.assign("Dirt Tunnel Entrance");
-	room[DirtTunnel1].roomNumber = DirtTunnel1;
-	room[DirtTunnel1].RoomExit[north] = NONE;
-	room[DirtTunnel1].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
-	room[DirtTunnel1].RoomExit[south] = NONE;
-	room[DirtTunnel1].RoomExit[east] = DirtTunnel1;
-	room[DirtTunnel1].RoomExit[west] = StorageRoom;
+	room[DirtPassageway].name.assign("Dirt Passageway");
+	room[DirtPassageway].roomNumber = DirtPassageway;
+	room[DirtPassageway].RoomExit[north] = NONE;
+	room[DirtPassageway].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
+	room[DirtPassageway].RoomExit[south] = NONE;
+	room[DirtPassageway].RoomExit[east] = DirtPassageway;
+	room[DirtPassageway].RoomExit[west] = StorageRoom;
 
-	room[DirtTunnel2].name.assign("Dirt Tunnel Exit");
-	room[DirtTunnel2].roomNumber = DirtTunnel2;
-	room[DirtTunnel2].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
-	room[DirtTunnel2].RoomExit[north] = NONE;
-	room[DirtTunnel2].RoomExit[south] = NONE;
-	room[DirtTunnel2].RoomExit[east] = UnderGroundChamber;
-	room[DirtTunnel2].RoomExit[west] = DirtTunnel1;
+	room[DirtTunnel].name.assign("Dirt Tunnel");
+	room[DirtTunnel].roomNumber = DirtTunnel;
+	room[DirtTunnel].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
+	room[DirtTunnel].RoomExit[north] = NONE;
+	room[DirtTunnel].RoomExit[south] = NONE;
+	room[DirtTunnel].RoomExit[east] = UnderGroundChamber;
+	room[DirtTunnel].RoomExit[west] = DirtPassageway;
 
 	room[UnderGroundChamber].name.assign("Under Ground Chamber");
 	room[UnderGroundChamber].roomNumber = UnderGroundChamber;
@@ -208,7 +208,7 @@ void Room::setRoom(Room* room) {
 	room[UnderGroundChamber].RoomExit[north] = NONE;
 	room[UnderGroundChamber].RoomExit[south] = YouHaveEscaped;
 	room[UnderGroundChamber].RoomExit[east] = NONE;
-	room[UnderGroundChamber].RoomExit[west] = DirtTunnel2;
+	room[UnderGroundChamber].RoomExit[west] = DirtTunnel;
 
 	room[YouHaveEscaped].name.assign("You Have Escaped");
 	room[YouHaveEscaped].roomNumber = YouHaveEscaped;

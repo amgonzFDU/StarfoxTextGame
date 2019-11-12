@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 	while (userInput != "QUIT") {
 		userInput.clear();
 		std::cout << "What do you want to do?\n";
-		std::cin >> userInput;
+		std::getline(std::cin,userInput);
 		std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 		if (!validateInput(userInput)) {
 			std::cout << "Enter a valid command \n"; //not working properly
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 			else if (userInput == "DROP") {
 				userInput.clear();
 				std::cout << "What Item do you want to drop?\n";
-				std::cin >> userInput;//Rock
+				std::getline(std::cin,userInput);//Rock
 				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 				int currentRoomNumber = CURRENTROOM->getCurrentRoomNumber();
 				std::string CurrentRoomName = CURRENTROOM->getCurrentRoomName();
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
 			{
 				userInput.clear();
 				std::cout << "What Item do you want to pick up?\n";
-				std::cin >> userInput;//Rock
+				std::getline(std::cin,userInput);//Rock
 				std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 	
      			/*tries to find the item according to user input 

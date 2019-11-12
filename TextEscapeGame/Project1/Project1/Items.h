@@ -20,5 +20,6 @@ public:
 	std::string ItemEnumToString(Items* item, int);
 	std::string getItemLocationName(Items* item, int);
 	void outputPlayerItems(Items*);
+	void outputRoomItems(Items* item, int);
 
 };

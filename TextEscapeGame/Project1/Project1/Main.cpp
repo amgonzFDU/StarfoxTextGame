@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 	//sets current room to the first room 0 which is the cell
 	CURRENTROOM->setCurrentRoom(room, 1);
 	std::cout << CURRENTROOM->getRoomDiscription(room,1) << std::endl;
-	
+	item->outputRoomItems(item, CURRENTROOM->getCurrentRoomNumber());
 	while (userInput != "QUIT") {
 		userInput.clear();
 		std::cout << "What do you want to do?\n";

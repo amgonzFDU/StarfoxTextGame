@@ -3,11 +3,12 @@
 #include <iostream>
 // constructor
 // turns strings into numbers so rock is equal to 0 and key is equal to 1
-enum itemsname { rock, key,scroll,candle,rope,spear,bar,chest,ring,mirror,key2,flask };
+enum itemsname { rock, key,scroll,candle,rope,spear,bar,chest,ring,mirror,key2,flask,sizeofitems};
+
 enum itemslocation{
 	player, cell, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9
 	, cell10, cell11, cell12, cell13, cell14, cell15, cell16, cell17, cell18
-	, cell19, cell20, cell21,
+	, cell19, cell20, cell21,sizeoflocatins
 };
 Items::Items() {
 
@@ -108,23 +109,37 @@ enum in the itemslocation
 */
 
 int Items::userInputToEnumItemLocation(Items* item, std::string itmname) {
+	
+	for (int i = 0; i < sizeoflocatins; i++) {
+		if (itmname == item[i].name) {
+			return getItemLocation(item, i);
+		}
+	}/*
 	if (itmname == "ROCK") {
 		return getItemLocation(item, 0);
 	}
 	if (itmname == "KEY") {
 		return getItemLocation(item, 1);
 	}
+	if (itmname == "ROCK") {
+		return getItemLocation(item, 0);
+	}
+	if (itmname == "KEY") {
+		return getItemLocation(item, 1);
+	}
+	*/
 	std::cout << "You did not spell that right or item doesn't exist \n";
 	return -1;
-
+	
 }
 int Items::getItemNameEnum(Items* item, std::string itemname) {
-	if (itemname == "ROCK") {
-		return 0;
+	
+	for (int i = 0; i < sizeofitems; i++) {
+		if (itemname == item[i].name) {
+			return i;
+		}
 	}
-	if (itemname == "KEY") {
-		return 1;
-	}
+	
 }
 //turns the players input into a string based on it's enum number
 std::string Items::ItemEnumToString(Items* item, int itemEnum) {
@@ -140,10 +155,18 @@ outputs the players inventory
 Jira Issue # Fox-139
 */
 void Items::outputPlayerItems(Items* item) {
+	std::cout << "Your Inventory" << std::endl;
 	for (int i = 0; i <= flask; i++) {
 		if (item[i].location == player) {
-			std::cout << "Your Inventory" << std::endl;
 			std::cout << item[i].name<<std::endl;
+		}
+	}
+}
+void Items::outputRoomItems(Items* item, int currentRoom) {
+	std::cout << "This room contains" << std::endl;
+	for (int i = 0; i <= flask; i++) {
+		if (item[i].location == currentRoom) {
+			std::cout << item[i].name << std::endl;
 		}
 	}
 }

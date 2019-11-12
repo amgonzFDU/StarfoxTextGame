@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "Items.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -220,7 +221,8 @@ void Room::setRoom(Room* room) {
 
 }
 void Room::moveRoom(Room* room, int roomName,int direction){
-	//the room number you want to move to 
+	//lets us use functions from item class 
+	
 	int roomnum;
 	roomnum = room[roomName].RoomExit[direction];
 	//checks to see if there is a room where the player want to go
@@ -228,6 +230,7 @@ void Room::moveRoom(Room* room, int roomName,int direction){
 		setCurrentRoom(room, roomnum);
 
 		std::cout << getRoomDiscription(room, getCurrentRoomNumber()) <<std::endl;
+		
 		return;
 	}	
 	std::cout << "There is no room that way try a different direction \n";

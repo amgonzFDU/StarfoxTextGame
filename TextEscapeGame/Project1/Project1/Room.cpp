@@ -5,7 +5,7 @@
 #include <fstream>
 
 enum RoomNames {
-	player, Dungeon, lockedcell, cellblock1, cellblock2, cellblock3,CellBlockCrossRoads,CellBlock4, BrokenStairway, BoneFilledDungeon
+	player, Dungeon, lockedcell, cellblocka765, cellblock6mk5, cellblock88f7,CellBlockCrossRoads,cellblock25k6, BrokenStairway, BoneFilledDungeon
 	, BallRoom, Armory ,SouthCourtYard, NorthCourtYard, Bedroom, AlchemistsLab, WineCellar, StorageRoom, DirtTunnel1, DirtTunnel2
 	, UnderGroundChamber, YouHaveEscaped,numberofrooms
 };
@@ -61,50 +61,50 @@ void Room::setRoom(Room* room) {
 	room[lockedcell].name.assign("Locked Cell");
 	room[lockedcell].roomNumber = lockedcell;
 	room[lockedcell].roomDiscription.assign("A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
-	room[lockedcell].RoomExit[north] = cellblock1;
+	room[lockedcell].RoomExit[north] = cellblocka765;
 	room[lockedcell].RoomExit[south] = NONE;
 	room[lockedcell].RoomExit[east] = Dungeon;
 	room[lockedcell].RoomExit[west] = NONE;
 
-	room[cellblock1].name.assign("Cell Block 1");
-	room[cellblock1].roomNumber = cellblock1;
-	room[cellblock1].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cellblock1].RoomExit[north] = NONE;
-	room[cellblock1].RoomExit[south] = lockedcell;
-	room[cellblock1].RoomExit[east] = CellBlock4;
-	room[cellblock1].RoomExit[west] = cellblock2;
+	room[cellblocka765].name.assign("Cell Block 1");
+	room[cellblocka765].roomNumber = cellblocka765;
+	room[cellblocka765].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblocka765].RoomExit[north] = NONE;
+	room[cellblocka765].RoomExit[south] = lockedcell;
+	room[cellblocka765].RoomExit[east] = cellblock25k6;
+	room[cellblocka765].RoomExit[west] = cellblock6mk5;
 	
-	room[cellblock2].name.assign("Cell Block 2");
-	room[cellblock2].roomNumber = cellblock2;
-	room[cellblock2].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cellblock2].RoomExit[north] = NONE;
-	room[cellblock2].RoomExit[south] = NONE;
-	room[cellblock2].RoomExit[east] = cellblock1;
-	room[cellblock2].RoomExit[west] = cellblock3;
+	room[cellblock6mk5].name.assign("Cell Block 2");
+	room[cellblock6mk5].roomNumber = cellblock6mk5;
+	room[cellblock6mk5].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock6mk5].RoomExit[north] = NONE;
+	room[cellblock6mk5].RoomExit[south] = NONE;
+	room[cellblock6mk5].RoomExit[east] = cellblocka765;
+	room[cellblock6mk5].RoomExit[west] = cellblock88f7;
 
-	room[cellblock3].name.assign("Cell Block 3");
-	room[cellblock3].roomNumber = cellblock3;
-	room[cellblock3].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[cellblock3].RoomExit[north] = NONE;
-	room[cellblock3].RoomExit[south] = NONE;
-	room[cellblock3].RoomExit[east] = cellblock2;
-	room[cellblock3].RoomExit[west] = CellBlockCrossRoads;
+	room[cellblock88f7].name.assign("Cell Block 3");
+	room[cellblock88f7].roomNumber = cellblock88f7;
+	room[cellblock88f7].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock88f7].RoomExit[north] = NONE;
+	room[cellblock88f7].RoomExit[south] = NONE;
+	room[cellblock88f7].RoomExit[east] = cellblock6mk5;
+	room[cellblock88f7].RoomExit[west] = CellBlockCrossRoads;
 
 	room[CellBlockCrossRoads].name.assign("Cell Block Cross Roads");
 	room[CellBlockCrossRoads].roomNumber = CellBlockCrossRoads;
 	room[CellBlockCrossRoads].roomDiscription.assign("The narrow hallway comes to a T - intersection, with another passage running north and south. The southern hall is blocked by fallen debris that are still burning.");
 	room[CellBlockCrossRoads].RoomExit[north] = BallRoom;
 	room[CellBlockCrossRoads].RoomExit[south] = NONE;
-	room[CellBlockCrossRoads].RoomExit[east] = cellblock3;
+	room[CellBlockCrossRoads].RoomExit[east] = cellblock88f7;
 	room[CellBlockCrossRoads].RoomExit[west] = NONE;
 
-	room[CellBlock4].name.assign("Cell Block 4");
-	room[CellBlock4].roomNumber = CellBlock4;
-	room[CellBlock4].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
-	room[CellBlock4].RoomExit[north] = NONE;
-	room[CellBlock4].RoomExit[south] = NONE;
-	room[CellBlock4].RoomExit[east] = BrokenStairway;
-	room[CellBlock4].RoomExit[west] = cellblock1;
+	room[cellblock25k6].name.assign("Cell Block 4");
+	room[cellblock25k6].roomNumber = cellblock25k6;
+	room[cellblock25k6].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock25k6].RoomExit[north] = NONE;
+	room[cellblock25k6].RoomExit[south] = NONE;
+	room[cellblock25k6].RoomExit[east] = BrokenStairway;
+	room[cellblock25k6].RoomExit[west] = cellblocka765;
 	
 	room[BrokenStairway].name.assign("Broken Stairway");
 	room[BrokenStairway].roomNumber = BrokenStairway;
@@ -112,7 +112,7 @@ void Room::setRoom(Room* room) {
 	room[BrokenStairway].RoomExit[north] = WineCellar;
 	room[BrokenStairway].RoomExit[south] = NONE;
 	room[BrokenStairway].RoomExit[east] = BoneFilledDungeon;
-	room[BrokenStairway].RoomExit[west] = CellBlock4;
+	room[BrokenStairway].RoomExit[west] = cellblock25k6;
 
 	room[BoneFilledDungeon].name.assign("Bone Filled Dungeon");
 	room[BoneFilledDungeon].roomNumber = BoneFilledDungeon; 

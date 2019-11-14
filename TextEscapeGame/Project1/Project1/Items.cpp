@@ -145,6 +145,17 @@ std::string Items::ItemEnumToString(Items* item, int itemEnum) {
 		return "Key";
 	}
 }
+//Confirms the player is able to use the item since it's in their inventory
+bool Items::CheckInventory(Items* item, std::string itemName) {
+	
+	for (int i = 0; i <= flask; i++) {
+		if (item[i].location == player) {
+			return true;
+		}
+	}
+	std::cout << itemName + " is not in your inventory. \n";
+	return false;
+}
 /*
 outputs the players inventory
 Jira Issue # Fox-139

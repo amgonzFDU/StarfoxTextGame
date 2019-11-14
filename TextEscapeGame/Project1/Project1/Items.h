@@ -21,5 +21,6 @@ public:
 	std::string getItemLocationName(Items* item, int);
 	void outputPlayerItems(Items*);
 	void outputRoomItems(Items* item, int);
+	bool CheckInventory(Items* item, std::string itemName);
 
 };

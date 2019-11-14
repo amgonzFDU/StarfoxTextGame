@@ -154,7 +154,17 @@ int main(int argc, char *argv[])
 					Item.clear();
 					Lock.clear();
 					*/
-
+					userInput.clear();
+					std::string itemName = USERINPUT();					
+					//std::transform(itemName.begin(), itemName.end(), itemName.begin(), ::toupper);					
+					if (item->CheckInventory(item, itemName)) {
+						std::cout << "What would you like to use " + itemName + " on? \n";
+						std::string itemUsedOn = USERINPUT();
+						//std::transform(itemUsedOn.begin(), itemUsedOn.end(), itemUsedOn.begin(), ::toupper);
+						std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
+						room->SolvePuzzle(room, currentRoomName, itemName, itemUsedOn);
+						std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
+					}
 				}
 				else if (userInput == "THROW") {
 					std::cout << "What would you like to throw?\n";
@@ -193,12 +203,8 @@ int main(int argc, char *argv[])
 
 
 		}
-
-
-
 		std::cout << "Goodbye.";
 		exit(0);
 		return 0;
-	
 }
 

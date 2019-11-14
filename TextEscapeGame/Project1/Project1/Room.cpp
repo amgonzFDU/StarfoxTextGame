@@ -11,6 +11,8 @@ enum RoomNames {
 };
 enum directions {north,south,east,west};
 const int NONE = -1;
+//Added MAYBE to give players a hint that it's a potential exit
+const int MAYBE = -2;
 char a = 1;
 /*
 Defult Room constructor
@@ -61,7 +63,9 @@ void Room::setRoom(Room* room) {
 	room[lockedcell].name.assign("Locked Cell");
 	room[lockedcell].roomNumber = lockedcell;
 	room[lockedcell].roomDiscription.assign("A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
-	room[lockedcell].RoomExit[north] = cellblocka765;
+	//Commenting out as initially this path is unavailable until the lock is unlocked.
+	//room[lockedcell].RoomExit[north] = cellblocka765;
+	room[lockedcell].RoomExit[north] = MAYBE;
 	room[lockedcell].RoomExit[south] = NONE;
 	room[lockedcell].RoomExit[east] = Dungeon;
 	room[lockedcell].RoomExit[west] = NONE;
@@ -233,8 +237,7 @@ void Room::moveRoom(Room* room, int roomName,int direction,Items* items){
 		Items item;
 		item.outputRoomItems(items, getCurrentRoomNumber());
 		return;
-	}	
-	std::cout << "There is no room that way try a different direction \n";
+	}		
 }
 /*
 calls different function to set the roomname and number
@@ -276,9 +279,31 @@ bool Room::exists(Room*room,int roomName,int direction) {
 	int roomnum;
 	roomnum = room[roomName].RoomExit[direction];
 	if (roomnum == -1) {
+		std::cout << "There is no room that way try a different direction \n";
+		return false;
+	}
+	else if (roomnum == -2) {
+		std::cout << "Seems like a potential exit. Might have to do something first. \n";
 		return false;
 	}
 	else {
 		return true;
+	}
+}
+
+/*Gets called when proper item is used to solve puzzle to go to next room for room : Locked Cell*/
+bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemName, std::string itemUsedOn) {	
+	if (currentRoomName == "Locked Cell") {
+		if (itemName == "KEY" && itemUsedOn == "LOCK") {
+			room[lockedcell].RoomExit[north] = cellblocka765;
+			room[lockedcell].roomDiscription.assign("You have opened the cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
+			return true;
+		}
+		else {
+			std::cout << "Couldn't use that here. \n";
+		}		
+	}
+	else {
+		std::cout << "Using items won't help you here. \n";
 	}
 }

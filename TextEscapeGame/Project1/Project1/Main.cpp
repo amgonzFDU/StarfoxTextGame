@@ -20,13 +20,26 @@ int helpcount = 0;
 //validates the input is an aproved verb
 std::string validateInput(std::string userInput) {
 	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","GET","INVENTORY","HELP" };
+	//this keeps track of how many commands we print
+	int count = 0;
 	for (int i = 0; i < VERBS; i++) {
-		 
-		if (validInputs[i] == userInput || userInput.find(validInputs[i]) != std::string::npos) {
-			
+		
+		if (validInputs[i] == userInput) {
+
 			return validInputs[i];
 		}
+	}
+	for(int i = 0 ; i<VERBS;i++){
+		if (userInput.find(validInputs[i]) != std::string::npos) {
+			std::cout << "The correct input is " << validInputs[i] <<std::endl;
+			count++;
+			
+		}
 		
+	}
+	if (count > 1)
+	{
+		std::cout << "Input's are one word at a time not multiple\n";
 	}
 
 	return "INVALID";
@@ -37,11 +50,9 @@ std::string USERINPUT() {
 	std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 
 	//these two remove white spaces and tabs from user input
-	//but aren't needed becasue we changed how validate inputs work
-	//the validate inputs now looks through the entire input string for a valid input 
-	// removing this makes nor th not work but northhh does
-	//userInput.erase(remove(userInput.begin(), userInput.end(), ' '), userInput.end());
-	//userInput.erase(remove(userInput.begin(), userInput.end(), '	'), userInput.end());
+	
+	userInput.erase(remove(userInput.begin(), userInput.end(), ' '), userInput.end());
+	userInput.erase(remove(userInput.begin(), userInput.end(), '	'), userInput.end());
 
 	if (std::cin.eof()) {
 		std::cin.clear();
@@ -170,7 +181,7 @@ int main(int argc, char *argv[])
 					std::cout << "Type: 'Room' if you need to see what room you are in.\n";
 					std::cout << "Type: 'get' to pick up items and 'drop' to drop them\n";
 					std::cout << "Examples of valid inputs 'get' then 'rock' not 'get rock'\n";
-					std::cout << "Eneter actions one word at a time";
+					std::cout << "Eneter actions one word at a time\n";
 				}
 				else if (userInput == "USE") {
 					helpcount = 0;

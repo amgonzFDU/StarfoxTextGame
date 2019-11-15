@@ -90,7 +90,6 @@ void Items::PlayerDrop(Items* item, std::string userInput, int currentRoomNumber
 	int itemNameEnumNumber = getItemNameEnum(item, userInput);
 	item[itemNameEnumNumber].location = currentRoomNumber;
 
-	std::string itemName = ItemEnumToString(item, itemNameEnumNumber);
 	item[itemNameEnumNumber].itemRoom = currentRoomName;
 }
 int Items::getItemLocation(Items* item,int itmNum) {

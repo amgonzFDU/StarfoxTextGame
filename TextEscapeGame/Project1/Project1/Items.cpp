@@ -90,7 +90,8 @@ void Items::PlayerDrop(Items* item, std::string userInput, int currentRoomNumber
 	int itemNameEnumNumber = getItemNameEnum(item, userInput);
 	item[itemNameEnumNumber].location = currentRoomNumber;
 
-	std::string itemName = ItemEnumToString(item, itemNameEnumNumber);
+	//don't think we need this seems useless?
+	//std::string itemName = ItemEnumToString(item, itemNameEnumNumber);
 	item[itemNameEnumNumber].itemRoom = currentRoomName;
 }
 int Items::getItemLocation(Items* item,int itmNum) {
@@ -136,15 +137,22 @@ int Items::getItemNameEnum(Items* item, std::string itemname) {
 	}
 	
 }
-//turns the players input into a string based on it's enum number
-std::string Items::ItemEnumToString(Items* item, int itemEnum) {
-	if (itemEnum == rock) {
-		return "Rock";
-	}
-	if (itemEnum == key) {
-		return "Key";
-	}
-}
+////turns the players input into a string based on it's enum number
+////but I don't think we use this so it's useless
+//std::string Items::ItemEnumToString(Items* item, int itemEnum) {
+//	
+//	for (int i = 0; i < sizeofitems; i++) {
+//		if (itemEnum == item[i].location) {
+//			return 0;
+//		}
+//	}
+//	/*if (itemEnum == rock) {
+//		return "Rock";
+//	}
+//	if (itemEnum == key) {
+//		return "Key";
+//	}*/
+//}
 //Confirms the player is able to use the item since it's in their inventory
 bool Items::CheckInventory(Items* item, std::string itemName) {
 	

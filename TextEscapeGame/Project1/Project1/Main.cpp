@@ -32,6 +32,9 @@ std::string USERINPUT() {
 	std::getline(std::cin, userInput);
 	std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 
+	userInput.erase(remove(userInput.begin(), userInput.end(), ' '), userInput.end());
+	userInput.erase(remove(userInput.begin(), userInput.end(), '	'), userInput.end());
+
 	if (std::cin.eof()) {
 		std::cin.clear();
 		return "You did not input a correct action.\n";

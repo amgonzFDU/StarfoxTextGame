@@ -18,22 +18,30 @@ enum itemsname { rock, key };
 //count till it asks if you need help
 int helpcount = 0;
 //validates the input is an aproved verb
-bool validateInput(std::string userInput) {
+std::string validateInput(std::string userInput) {
 	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","GET","INVENTORY","HELP" };
 	for (int i = 0; i < VERBS; i++) {
-		if (validInputs[i] == userInput) {
-			return true;
+		 
+		if (validInputs[i] == userInput || userInput.find(validInputs[i]) != std::string::npos) {
+			
+			return validInputs[i];
 		}
+		
 	}
-	return false;
+
+	return "INVALID";
 }
 std::string USERINPUT() {
 	std::string userInput;
 	std::getline(std::cin, userInput);
 	std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::toupper);
 
-	userInput.erase(remove(userInput.begin(), userInput.end(), ' '), userInput.end());
-	userInput.erase(remove(userInput.begin(), userInput.end(), '	'), userInput.end());
+	//these two remove white spaces and tabs from user input
+	//but aren't needed becasue we changed how validate inputs work
+	//the validate inputs now looks through the entire input string for a valid input 
+	// removing this makes nor th not work but northhh does
+	//userInput.erase(remove(userInput.begin(), userInput.end(), ' '), userInput.end());
+	//userInput.erase(remove(userInput.begin(), userInput.end(), '	'), userInput.end());
 
 	if (std::cin.eof()) {
 		std::cin.clear();
@@ -102,8 +110,9 @@ int main(int argc, char *argv[])
 			std::cout << "What do you want to do?\n";
 			userInput = USERINPUT();
 			
-			
-			if (!validateInput(userInput)) {
+			userInput = validateInput(userInput);
+			/*if (!validateInput(userInput)) {*/
+			if(userInput == "INVALID"){
 				std::cout << "Enter a valid command \n"; //not working properly
 				helpcount++;
 				if (helpcount > 3) {

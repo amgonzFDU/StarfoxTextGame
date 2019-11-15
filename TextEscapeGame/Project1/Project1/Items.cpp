@@ -81,7 +81,7 @@ void Items::PlayerPickup(Items* item, std::string userInput,int currentRoom) {
 		int itemNameEnumNumber = getItemNameEnum(item, userInput);
 		item[itemNameEnumNumber].location = 0;
 		item[itemNameEnumNumber].itemRoom.assign("Player");
-		std::cout << "You picked up " + item[itemNameEnumNumber].name;
+		std::cout << "You picked up " + item[itemNameEnumNumber].name << std::endl;
 	}
 }
 // If the player wants to drop an item then we get what room 
@@ -178,10 +178,16 @@ void Items::outputPlayerItems(Items* item) {
 	}
 }
 void Items::outputRoomItems(Items* item, int currentRoom) {
-	std::cout << "This room contains" << std::endl;
+	std::cout << "This room contains: \n";
+	int count = 0;
 	for (int i = 0; i <= flask; i++) {
-		if (item[i].location == currentRoom) {
-			std::cout << item[i].name << std::endl;
-		}
+			if (item[i].location == currentRoom) {
+				std::cout << item[i].name << std::endl;
+				count++;
+			}
 	}
+	if (count == 0) {
+		std::cout << "Nothing\n";
+	}
+	
 }

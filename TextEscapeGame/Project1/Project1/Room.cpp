@@ -233,7 +233,8 @@ void Room::moveRoom(Room* room, int roomName,int direction,Items* items){
 	if (exists(room,roomName,direction)) {
 		setCurrentRoom(room, roomnum);
 
-		std::cout << getRoomDiscription(room, getCurrentRoomNumber()) <<std::endl;
+		std::cout << "The room is " << getCurrentRoomName() << std::endl;
+		std::cout << getRoomDiscription(room, getCurrentRoomNumber())<<std::endl;
 		Items item;
 		item.outputRoomItems(items, getCurrentRoomNumber());
 		return;

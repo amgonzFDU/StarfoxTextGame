@@ -35,7 +35,6 @@ std::string validateInput(std::string userInput) {
 			count++;
 			
 		}
-		
 	}
 	if (count > 1)
 	{
@@ -181,7 +180,7 @@ int main(int argc, char *argv[])
 					std::cout << "Type: 'Room' if you need to see what room you are in.\n";
 					std::cout << "Type: 'get' to pick up items and 'drop' to drop them\n";
 					std::cout << "Examples of valid inputs 'get' then 'rock' not 'get rock'\n";
-					std::cout << "Eneter actions one word at a time\n";
+					std::cout << "Enter actions one word at a time\n";
 				}
 				else if (userInput == "USE") {
 					helpcount = 0;

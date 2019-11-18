@@ -14,6 +14,7 @@ const int NONE = -1;
 //Added MAYBE to give players a hint that it's a potential exit
 const int MAYBE = -2;
 char a = 1;
+int rockThrowCount = 0;
 /*
 Defult Room constructor
 */
@@ -54,15 +55,16 @@ void Room::setRoom(Room* room) {
 	//all the names are equal to numbers in the enumerator
 	room[Dungeon].name.assign("Dungeon");
 	room[Dungeon].roomNumber = Dungeon;
-	room[Dungeon].roomDiscription.assign("Cold, damp cell. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door.");
+	room[Dungeon].roomDiscription.assign("You are in a cold, damp cell with stone walls. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door. The room seems barren except for a few items.\n");
 	room[Dungeon].RoomExit[north] = NONE;
 	room[Dungeon].RoomExit[south] = NONE;
 	room[Dungeon].RoomExit[east] = NONE;
-	room[Dungeon].RoomExit[west] = lockedcell;
+	//room[Dungeon].RoomExit[west] = lockedcell;
+	room[Dungeon].RoomExit[west] = MAYBE;
 
 	room[lockedcell].name.assign("Locked Cell");
 	room[lockedcell].roomNumber = lockedcell;
-	room[lockedcell].roomDiscription.assign("A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
+	room[lockedcell].roomDiscription.assign("You are in a small, stone walled cell. Through the dim moonlight you can see tally marks etched into the mossy stone wall, seemingly 88 in total. The north side is barred with a heavy iron door. There is a withered skeleton hanging from the ceiling and a hole in the wall to the east.\n");
 	//Commenting out as initially this path is unavailable until the lock is unlocked.
 	//room[lockedcell].RoomExit[north] = cellblocka765;
 	room[lockedcell].RoomExit[north] = MAYBE;
@@ -72,7 +74,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblocka765].name.assign("Cell Block A765");
 	room[cellblocka765].roomNumber = cellblocka765;
-	room[cellblocka765].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblocka765].RoomExit[north] = NONE;
 	room[cellblocka765].RoomExit[south] = lockedcell;
 	room[cellblocka765].RoomExit[east] = cellblock25k6;
@@ -80,7 +82,7 @@ void Room::setRoom(Room* room) {
 	
 	room[cellblock6mk5].name.assign("Cell Block 6mk5");
 	room[cellblock6mk5].roomNumber = cellblock6mk5;
-	room[cellblock6mk5].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblock6mk5].RoomExit[north] = NONE;
 	room[cellblock6mk5].RoomExit[south] = NONE;
 	room[cellblock6mk5].RoomExit[east] = cellblocka765;
@@ -88,7 +90,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblock88f7].name.assign("Cell Block 88f7");
 	room[cellblock88f7].roomNumber = cellblock88f7;
-	room[cellblock88f7].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblock88f7].RoomExit[north] = NONE;
 	room[cellblock88f7].RoomExit[south] = NONE;
 	room[cellblock88f7].RoomExit[east] = cellblock6mk5;
@@ -96,7 +98,7 @@ void Room::setRoom(Room* room) {
 
 	room[CellBlockCrossRoads].name.assign("Cell Block Cross Roads");
 	room[CellBlockCrossRoads].roomNumber = CellBlockCrossRoads;
-	room[CellBlockCrossRoads].roomDiscription.assign("The narrow hallway comes to a T - intersection, with another passage running north and south. The southern hall is blocked by fallen debris that are still burning.");
+	room[CellBlockCrossRoads].roomDiscription.assign("You are at a T-intersection of two hallways. The southern hall is blocked by fallen debris. Within the pile of dirt and stone, long pieces of wood burn steadily. To the north, a steep stairway leads upward. The westward passage heads back into the long hall of cells.\n");
 	room[CellBlockCrossRoads].RoomExit[north] = BallRoom;
 	room[CellBlockCrossRoads].RoomExit[south] = NONE;
 	room[CellBlockCrossRoads].RoomExit[east] = cellblock88f7;
@@ -112,8 +114,9 @@ void Room::setRoom(Room* room) {
 	
 	room[BrokenStairway].name.assign("Broken Stairway");
 	room[BrokenStairway].roomNumber = BrokenStairway;
-	room[BrokenStairway].roomDiscription.assign("It is too dark to see further, proceeding would be unwise.");
-	room[BrokenStairway].RoomExit[north] = WineCellar;
+	room[BrokenStairway].roomDiscription.assign("It is too dark to see further, proceeding would be unwise...\n");
+	//room[BrokenStairway].RoomExit[north] = WineCellar;
+	room[BrokenStairway].RoomExit[north] = MAYBE;
 	room[BrokenStairway].RoomExit[south] = NONE;
 	room[BrokenStairway].RoomExit[east] = BoneFilledDungeon;
 	room[BrokenStairway].RoomExit[west] = cellblock25k6;
@@ -293,18 +296,62 @@ bool Room::exists(Room*room,int roomName,int direction) {
 }
 
 /*Gets called when proper item is used to solve puzzle to go to next room for room : Locked Cell*/
-bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemName, std::string itemUsedOn) {	
-	if (currentRoomName == "Locked Cell") {
-		if (itemName == "KEY" && itemUsedOn == "LOCK") {
-			room[lockedcell].RoomExit[north] = cellblocka765;
-			room[lockedcell].roomDiscription.assign("You have opened the cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
-			return true;
+bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemName) {	
+	if (currentRoomName == "Dungeon") {
+		if (itemName == "ROCK") {
+			rockThrowCount++;
+			if (rockThrowCount > 0 && rockThrowCount < 3) {
+				std::cout << "You threw the rock at the feeble part of the wall and you can see more of the next room... \n";
+			}
+			if (rockThrowCount == 3) {
+				std::cout << "The rock breaks open a hole in the wall big enough to crawl through.\n";
+				room[Dungeon].RoomExit[west] = lockedcell;
+				room[Dungeon].roomDiscription.assign("You are in a cold, damp cell with stone walls. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door. The room seems barren except for a few items. The wall to the west has a hole big enough to crawl through.\n");
+			}
 		}
 		else {
-			std::cout << "Couldn't use that here. \n";
-		}		
+			std::cout << "Cant use that item here. \n";
+		}
+	}
+	else if(currentRoomName == "Locked Cell") {
+		if (itemName == "KEY") {
+			std::cout << "The door unlocks.\n";
+			room[lockedcell].RoomExit[north] = cellblocka765;
+			room[lockedcell].roomDiscription.assign("You are in a small, stone walled cell. Through the dim moonlight you can see tally marks etched into the mossy stone wall, seemingly 88 in total. The north side has an open heavy iron door. There is a withered skeleton hanging from the ceiling and a hole in the wall to the east.\n");
+
+			return true;
+		}	
+		else {
+			std::cout << "Cant use that item here. \n";
+		}
+	}
+	else if (currentRoomName == "Cell Block Cross Roads") {
+		if (itemName == "CANDLE") {
+			std::cout << "You lit the candle, this will help in dark paths.";
+			room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. Something is strangely off about the wall to the north.\n");
+		}
+		else {
+			std::cout << "Cant use that item here. \n";
+		}
+	}
+	else if (currentRoomName == "Broken Stairway") {
+		if (itemName == "FLASK") {
+			std::cout << "You threw the flask. The stone wall suddenly crumbles, evaporating into a thick mist. It fades quickly revealing a passage where the wall once was.\n";
+			room[BrokenStairway].RoomExit[north] = WineCellar;
+			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. There is a doorway in the northern wall.\n");
+		}
 	}
 	else {
-		std::cout << "Using items won't help you here. \n";
+		if (itemName == "") {
+			std::cout << "Specify an item to use. \n";
+		}
+		else {
+			std::cout << "Cant use that item here. \n";
+		}
+		
 	}
 }

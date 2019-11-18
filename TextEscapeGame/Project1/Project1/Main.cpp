@@ -185,7 +185,6 @@ int main(int argc, char *argv[])
 				else if (userInput == "USE") {
 					helpcount = 0;
 					std::cout << "What would you like to use?\n";
-
 					/*
 					userInput.clear();
 					std::cin >> Item //input item being used
@@ -196,23 +195,24 @@ int main(int argc, char *argv[])
 					Lock.clear();
 					*/
 					userInput.clear();
-					std::string itemName = USERINPUT();					
-					//std::transform(itemName.begin(), itemName.end(), itemName.begin(), ::toupper);					
+					std::string itemName = USERINPUT();									
 					if (item->CheckInventory(item, itemName)) {
-						std::cout << "What would you like to use " + itemName + " on? \n";
-						std::string itemUsedOn = USERINPUT();
-						//std::transform(itemUsedOn.begin(), itemUsedOn.end(), itemUsedOn.begin(), ::toupper);
 						std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
-						room->SolvePuzzle(room, currentRoomName, itemName, itemUsedOn);
+						room->SolvePuzzle(room, currentRoomName, itemName);
 						std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
 					}
 				}
-				else if (userInput == "THROW") {
-					std::cout << "What would you like to throw?\n";
-
-					//will have very similar code to use referance that for details when ready.
-
-				}
+				//Team decided to just use the verb USE to make it easier for the user.
+				//else if (userInput == "THROW") {
+				//	std::cout << "What would you like to throw?\n";
+				//	std::string itemName = USERINPUT();
+				//	if (item->CheckInventory(item, itemName)) {						
+				//		std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
+				//		room->SolvePuzzle(room, currentRoomName, itemName);
+				//		std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
+				//	}					
+				//	//will have very similar code to use referance that for details when ready.
+				//}
 				else if (userInput == "DROP") {
 					userInput.clear();
 					std::cout << "What Item do you want to drop?\n";

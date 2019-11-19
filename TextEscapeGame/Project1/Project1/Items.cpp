@@ -55,7 +55,7 @@ void Items::setItemLocation(Items* item) {
 	item[ring].location = cell9;
 	item[ring].itemRoom.assign("cell9");
 
-	item[mirror].name.assign("MIRROR");
+	item[mirror].name.assign("KNIFE");
 	item[mirror].location = cell14;
 	item[mirror].itemRoom.assign("cell14");
 

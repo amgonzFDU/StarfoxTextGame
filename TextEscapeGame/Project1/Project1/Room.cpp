@@ -182,7 +182,7 @@ void Room::setRoom(Room* room) {
 	room[WineCellar].roomDiscription.assign("You are in a dusty and dark wine cellar. The room is thick with tough webs, especially at the mouth of a door to the east, where the webs forge a resilient obstruction. Next to one of the wine barrels, the remains of a skeleton sitting up against the wall, holding an empty porcelain mug.");
 	room[WineCellar].RoomExit[north] = NONE;
 	room[WineCellar].RoomExit[south] = BrokenStairway;
-	room[WineCellar].RoomExit[east] = StorageRoom;
+	room[WineCellar].RoomExit[east] = NONE;
 	room[WineCellar].RoomExit[west] = NONE;
 
 	room[StorageRoom].name.assign("Storage Room");
@@ -190,7 +190,7 @@ void Room::setRoom(Room* room) {
 	room[StorageRoom].roomDiscription.assign("You are in a  small, dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.");
 	room[StorageRoom].RoomExit[north] = NONE;
 	room[StorageRoom].RoomExit[south] = NONE;
-	room[StorageRoom].RoomExit[east] = DirtPassageway;
+	room[StorageRoom].RoomExit[east] = NONE;
 	room[StorageRoom].RoomExit[west] = WineCellar;
 
 	room[DirtPassageway].name.assign("Dirt Passageway");
@@ -198,7 +198,7 @@ void Room::setRoom(Room* room) {
 	room[DirtPassageway].RoomExit[north] = NONE;
 	room[DirtPassageway].roomDiscription.assign("You are in a narrow dirt passage, too short to stand in. There is a faint light ahead to the east.");
 	room[DirtPassageway].RoomExit[south] = NONE;
-	room[DirtPassageway].RoomExit[east] = DirtPassageway;
+	room[DirtPassageway].RoomExit[east] = DirtTunnel;
 	room[DirtPassageway].RoomExit[west] = StorageRoom;
 
 	room[DirtTunnel].name.assign("Dirt Tunnel");
@@ -211,9 +211,9 @@ void Room::setRoom(Room* room) {
 
 	room[UnderGroundChamber].name.assign("Under Ground Chamber");
 	room[UnderGroundChamber].roomNumber = UnderGroundChamber;
-	room[UnderGroundChamber].roomDiscription.assign("You are in a small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder. On the grate is a complex iron lock with four dials. Around the dials, the numbers one through one-hundred are etched into the iron.");
+	room[UnderGroundChamber].roomDiscription.assign("You are in a small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder to the south. On the grate is a complex iron lock with four dials. Around the dials, the numbers one through one-hundred are etched into the iron. The grate is locked, but could possibly be opened with the right combination.");
 	room[UnderGroundChamber].RoomExit[north] = NONE;
-	room[UnderGroundChamber].RoomExit[south] = YouHaveEscaped;
+	room[UnderGroundChamber].RoomExit[south] = NONE;
 	room[UnderGroundChamber].RoomExit[east] = NONE;
 	room[UnderGroundChamber].RoomExit[west] = DirtTunnel;
 
@@ -343,6 +343,27 @@ bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemN
 			std::cout << "You threw the flask. The stone wall suddenly crumbles, evaporating into a thick mist. It fades quickly revealing a passage where the wall once was.\n";
 			room[BrokenStairway].RoomExit[north] = WineCellar;
 			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. There is a doorway in the northern wall.\n");
+		}
+	}
+	else if (currentRoomName == "Wine Cellar") {
+		if (itemName == "KNIFE") {
+			std::cout << "You cut through the webs clearing a path to the door to the east.\n";
+			room[WineCellar].RoomExit[east] = StorageRoom;
+			room[WineCellar].roomDiscription.assign("You are in a dusty and dark wine cellar. The room is thick with tough webs, but the door to the east is clear. Next to one of the wine barrels, the remains of a skeleton sitting up against the wall, holding an empty porcelain mug.\n");
+		}
+	}
+	else if (currentRoomName == "Storage Room") {
+		if (itemName == "BAR") {
+			std::cout << "The you moved the box revieling a hole in the wall to the east.\n";
+			room[StorageRoom].RoomExit[east] = DirtPassageway;
+			room[StorageRoom].roomDiscription.assign("You are in a  small, dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. Beside one box is a hole in the eastern wall just big enough to squeeze through.\n");
+		}
+	}
+	else if (currentRoomName == "Under Ground Chamber") {
+		if (itemName == "886314") {
+			std::cout << "The lock releases and you are able to push up the grate.\n";
+			room[UnderGroundChamber].RoomExit[south] = YouHaveEscaped;
+			room[UnderGroundChamber].roomDiscription.assign("You are in a small empty dirt room with a ladder to the south. There is a faint light peeking through the open grate at the top of the ladder to the south.\n");
 		}
 	}
 	else {

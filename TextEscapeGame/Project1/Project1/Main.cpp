@@ -86,28 +86,21 @@ int main(int argc, char *argv[])
 		Player* MainPlayer = new Player(name);
 
 		std::cout << "Hello there " + MainPlayer->getName(); +"";
-		std::cout << " you can type 'help' for a list of rules and commands.\n";
+		std::cout << "\n";
+	std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
+	std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
+	std::cout << "Type: 'Room' if you need to see what room you are in.\n";
+	std::cout << "Type: 'Get' to pick up items and 'Drop' to drop them\n";
+	std::cout << "Examples of valid inputs 'get' then 'rock' not 'get rock'\n";
+	std::cout << "Type: 'Use' then '<item name>' to have an item interact with a room\n";
+	std::cout << "Examples of valid inputs 'use' then 'rock' not 'use rock'\n";
+	std::cout << "Enter actions one word at a time\n";
+	std::cout << " you can type 'help' for a list of rules and commands at any time.\n";
 		std::cout << "\n";
 
 		std::string userInput;
 
-		/*
-			N
-			|
-		W---|---E
-			|
-			S
-		Test Room Layout
-		| 1 | 2 | 3 |
-		-------------
-		| 4 | 5 | 6 |
-		-------------
-		| 7 | 8 | 9 |
-		*/
-
-
-
-
+		
 		// points to current room
 		Room* CURRENTROOM = new Room(room, 1);
 
@@ -178,8 +171,10 @@ int main(int argc, char *argv[])
 					std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
 					std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
 					std::cout << "Type: 'Room' if you need to see what room you are in.\n";
-					std::cout << "Type: 'get' to pick up items and 'drop' to drop them\n";
+					std::cout << "Type: 'Get' to pick up items and 'Drop' to drop them\n";
 					std::cout << "Examples of valid inputs 'get' then 'rock' not 'get rock'\n";
+					std::cout << "Type: 'Use' then '<item name>' to have an item interact with a room\n";
+					std::cout << "Examples of valid inputs 'use' then 'rock' not 'use rock'\n";
 					std::cout << "Enter actions one word at a time\n";
 				}
 				else if (userInput == "USE") {

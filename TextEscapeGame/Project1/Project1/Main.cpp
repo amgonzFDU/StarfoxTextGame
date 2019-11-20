@@ -86,28 +86,21 @@ int main(int argc, char *argv[])
 		Player* MainPlayer = new Player(name);
 
 		std::cout << "Hello there " + MainPlayer->getName(); +"";
-		std::cout << " you can type 'help' for a list of rules and commands.\n";
+		std::cout << "\n";
+	std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
+	std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
+	std::cout << "Type: 'Room' if you need to see what room you are in.\n";
+	std::cout << "Type: 'Get' to pick up items and 'Drop' to drop them\n";
+	std::cout << "Examples of valid inputs 'get' then 'rock' not 'get rock'\n";
+	std::cout << "Type: 'Use' then '<item name>' to have an item interact with a room\n";
+	std::cout << "Examples of valid inputs 'use' then 'rock' not 'use rock'\n";
+	std::cout << "Enter actions one word at a time\n";
+	std::cout << " you can type 'help' for a list of rules and commands at any time.\n";
 		std::cout << "\n";
 
 		std::string userInput;
 
-		/*
-			N
-			|
-		W---|---E
-			|
-			S
-		Test Room Layout
-		| 1 | 2 | 3 |
-		-------------
-		| 4 | 5 | 6 |
-		-------------
-		| 7 | 8 | 9 |
-		*/
-
-
-
-
+		
 		// points to current room
 		Room* CURRENTROOM = new Room(room, 1);
 
@@ -178,14 +171,15 @@ int main(int argc, char *argv[])
 					std::cout << "All you need to do is try to get out, can you make it to the exit? \n";
 					std::cout << "Type: 'North', 'South', 'East', or 'West' to move around the rooms\n";
 					std::cout << "Type: 'Room' if you need to see what room you are in.\n";
-					std::cout << "Type: 'get' to pick up items and 'drop' to drop them\n";
+					std::cout << "Type: 'Get' to pick up items and 'Drop' to drop them\n";
 					std::cout << "Examples of valid inputs 'get' then 'rock' not 'get rock'\n";
+					std::cout << "Type: 'Use' then '<item name>' to have an item interact with a room\n";
+					std::cout << "Examples of valid inputs 'use' then 'rock' not 'use rock'\n";
 					std::cout << "Enter actions one word at a time\n";
 				}
 				else if (userInput == "USE") {
 					helpcount = 0;
 					std::cout << "What would you like to use?\n";
-
 					/*
 					userInput.clear();
 					std::cin >> Item //input item being used
@@ -196,23 +190,24 @@ int main(int argc, char *argv[])
 					Lock.clear();
 					*/
 					userInput.clear();
-					std::string itemName = USERINPUT();					
-					//std::transform(itemName.begin(), itemName.end(), itemName.begin(), ::toupper);					
+					std::string itemName = USERINPUT();									
 					if (item->CheckInventory(item, itemName)) {
-						std::cout << "What would you like to use " + itemName + " on? \n";
-						std::string itemUsedOn = USERINPUT();
-						//std::transform(itemUsedOn.begin(), itemUsedOn.end(), itemUsedOn.begin(), ::toupper);
 						std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
-						room->SolvePuzzle(room, currentRoomName, itemName, itemUsedOn);
+						room->SolvePuzzle(room, currentRoomName, itemName);
 						std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
 					}
 				}
-				else if (userInput == "THROW") {
-					std::cout << "What would you like to throw?\n";
-
-					//will have very similar code to use referance that for details when ready.
-
-				}
+				//Team decided to just use the verb USE to make it easier for the user.
+				//else if (userInput == "THROW") {
+				//	std::cout << "What would you like to throw?\n";
+				//	std::string itemName = USERINPUT();
+				//	if (item->CheckInventory(item, itemName)) {						
+				//		std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
+				//		room->SolvePuzzle(room, currentRoomName, itemName);
+				//		std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
+				//	}					
+				//	//will have very similar code to use referance that for details when ready.
+				//}
 				else if (userInput == "DROP") {
 					userInput.clear();
 					std::cout << "What Item do you want to drop?\n";

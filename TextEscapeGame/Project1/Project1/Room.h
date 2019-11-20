@@ -24,7 +24,7 @@ public:
 	std::string getRoomDiscription(Room*, int);
 	std::string setRoomDiscription(int);
 	bool exists(Room*,int,int);
-	bool SolvePuzzle(Room* room, std::string, std::string, std::string);
+	bool SolvePuzzle(Room* room, std::string, std::string);
 	
 };
 

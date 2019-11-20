@@ -55,7 +55,7 @@ void Items::setItemLocation(Items* item) {
 	item[ring].location = cell9;
 	item[ring].itemRoom.assign("cell9");
 
-	item[mirror].name.assign("MIRROR");
+	item[mirror].name.assign("KNIFE");
 	item[mirror].location = cell14;
 	item[mirror].itemRoom.assign("cell14");
 
@@ -78,10 +78,13 @@ void Items::PlayerPickup(Items* item, std::string userInput,int currentRoom) {
 	//this next line checks to see if the player
 	//is in the room that the item is in to pick it up
 	if (currentRoom == itemLocationEnumNumber) {
-		int itemNameEnumNumber = getItemNameEnum(item, userInput);
+		int itemNameEnumNumber = getItemNameEnum(item, userInput);		
 		item[itemNameEnumNumber].location = 0;
 		item[itemNameEnumNumber].itemRoom.assign("Player");
 		std::cout << "You picked up " + item[itemNameEnumNumber].name << std::endl;
+		if (item[itemNameEnumNumber].name == "SCROLL" && currentRoom == 1) {
+			std::cout << "A feeble bit of wall is revealed from behind the scroll.\n";
+		}
 	}
 }
 // If the player wants to drop an item then we get what room 

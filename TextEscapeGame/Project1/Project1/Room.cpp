@@ -14,6 +14,7 @@ const int NONE = -1;
 //Added MAYBE to give players a hint that it's a potential exit
 const int MAYBE = -2;
 char a = 1;
+int rockThrowCount = 0;
 /*
 Defult Room constructor
 */
@@ -54,15 +55,16 @@ void Room::setRoom(Room* room) {
 	//all the names are equal to numbers in the enumerator
 	room[Dungeon].name.assign("Dungeon");
 	room[Dungeon].roomNumber = Dungeon;
-	room[Dungeon].roomDiscription.assign("Cold, damp cell. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door.");
+	room[Dungeon].roomDiscription.assign("You are in a cold, damp cell with stone walls. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door. The room seems barren except for a few items.\n");
 	room[Dungeon].RoomExit[north] = NONE;
 	room[Dungeon].RoomExit[south] = NONE;
 	room[Dungeon].RoomExit[east] = NONE;
-	room[Dungeon].RoomExit[west] = lockedcell;
+	//room[Dungeon].RoomExit[west] = lockedcell;
+	room[Dungeon].RoomExit[west] = MAYBE;
 
 	room[lockedcell].name.assign("Locked Cell");
 	room[lockedcell].roomNumber = lockedcell;
-	room[lockedcell].roomDiscription.assign("A cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
+	room[lockedcell].roomDiscription.assign("You are in a small, stone walled cell. Through the dim moonlight you can see tally marks etched into the mossy stone wall, seemingly 88 in total. The north side is barred with a heavy iron door. There is a withered skeleton hanging from the ceiling and a hole in the wall to the east.\n");
 	//Commenting out as initially this path is unavailable until the lock is unlocked.
 	//room[lockedcell].RoomExit[north] = cellblocka765;
 	room[lockedcell].RoomExit[north] = MAYBE;
@@ -72,7 +74,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblocka765].name.assign("Cell Block A765");
 	room[cellblocka765].roomNumber = cellblocka765;
-	room[cellblocka765].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblocka765].RoomExit[north] = NONE;
 	room[cellblocka765].RoomExit[south] = lockedcell;
 	room[cellblocka765].RoomExit[east] = cellblock25k6;
@@ -80,7 +82,7 @@ void Room::setRoom(Room* room) {
 	
 	room[cellblock6mk5].name.assign("Cell Block 6mk5");
 	room[cellblock6mk5].roomNumber = cellblock6mk5;
-	room[cellblock6mk5].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblock6mk5].RoomExit[north] = NONE;
 	room[cellblock6mk5].RoomExit[south] = NONE;
 	room[cellblock6mk5].RoomExit[east] = cellblocka765;
@@ -88,7 +90,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblock88f7].name.assign("Cell Block 88f7");
 	room[cellblock88f7].roomNumber = cellblock88f7;
-	room[cellblock88f7].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblock88f7].RoomExit[north] = NONE;
 	room[cellblock88f7].RoomExit[south] = NONE;
 	room[cellblock88f7].RoomExit[east] = cellblock6mk5;
@@ -96,7 +98,7 @@ void Room::setRoom(Room* room) {
 
 	room[CellBlockCrossRoads].name.assign("Cell Block Cross Roads");
 	room[CellBlockCrossRoads].roomNumber = CellBlockCrossRoads;
-	room[CellBlockCrossRoads].roomDiscription.assign("The narrow hallway comes to a T - intersection, with another passage running north and south. The southern hall is blocked by fallen debris that are still burning.");
+	room[CellBlockCrossRoads].roomDiscription.assign("You are at a T-intersection of two hallways. The southern hall is blocked by fallen debris. Within the pile of dirt and stone, long pieces of wood burn steadily. To the north, a steep stairway leads upward. The westward passage heads back into the long hall of cells.\n");
 	room[CellBlockCrossRoads].RoomExit[north] = BallRoom;
 	room[CellBlockCrossRoads].RoomExit[south] = NONE;
 	room[CellBlockCrossRoads].RoomExit[east] = cellblock88f7;
@@ -104,7 +106,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblock25k6].name.assign("Cell Block 25k6");
 	room[cellblock25k6].roomNumber = cellblock25k6;
-	room[cellblock25k6].roomDiscription.assign("Narrow hallway lined with locked cells. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down but is too dark to see.");
+	room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.");
 	room[cellblock25k6].RoomExit[north] = NONE;
 	room[cellblock25k6].RoomExit[south] = NONE;
 	room[cellblock25k6].RoomExit[east] = BrokenStairway;
@@ -112,15 +114,16 @@ void Room::setRoom(Room* room) {
 	
 	room[BrokenStairway].name.assign("Broken Stairway");
 	room[BrokenStairway].roomNumber = BrokenStairway;
-	room[BrokenStairway].roomDiscription.assign("It is too dark to see further, proceeding would be unwise.");
-	room[BrokenStairway].RoomExit[north] = WineCellar;
+	room[BrokenStairway].roomDiscription.assign("It is too dark to see further, proceeding would be unwise...\n");
+	//room[BrokenStairway].RoomExit[north] = WineCellar;
+	room[BrokenStairway].RoomExit[north] = MAYBE;
 	room[BrokenStairway].RoomExit[south] = NONE;
 	room[BrokenStairway].RoomExit[east] = BoneFilledDungeon;
 	room[BrokenStairway].RoomExit[west] = cellblock25k6;
 
 	room[BoneFilledDungeon].name.assign("Bone Filled Dungeon");
 	room[BoneFilledDungeon].roomNumber = BoneFilledDungeon; 
-	room[BoneFilledDungeon].roomDiscription.assign("A dirty dungeon littered with bones, there is an enormous boar guarding a chest.");
+	room[BoneFilledDungeon].roomDiscription.assign("You are in a filthy dungeon lit by burning torches along the moldy stone walls. The ground is littered with bones and a thin layer of reddish brown liquid. An enormous grotesque creature lurks towards the far wall of the room holding modest wooden chest. A stairway leads upwards behind you to the west.");
 	room[BoneFilledDungeon].RoomExit[north] = NONE;
 	room[BoneFilledDungeon].RoomExit[south] = NONE;
 	room[BoneFilledDungeon].RoomExit[east] = NONE;
@@ -128,7 +131,7 @@ void Room::setRoom(Room* room) {
 	
 	room[BallRoom].name.assign("Ballroom");
 	room[BallRoom].roomNumber = BallRoom;
-	room[BallRoom].roomDiscription.assign("Large open room lit by a chandelier hung from the tall ceiling.");
+	room[BallRoom].roomDiscription.assign("You are in a Large open room lit by a chandelier hung from the tall ceiling. The room is circular with a marble floor and stone walls. 6 thin marble pillars surround the room and stretch to the ceiling. To the east, a tall heavy Iron door is open just a crack. To the north are wooden double doors leading outside. A stairway heads downward to the south.");
 	room[BallRoom].RoomExit[north] = SouthCourtYard;
 	room[BallRoom].RoomExit[south] = CellBlockCrossRoads;
 	room[BallRoom].RoomExit[east] = Armory;
@@ -136,7 +139,7 @@ void Room::setRoom(Room* room) {
 
 	room[Armory].name.assign("Armory");
 	room[Armory].roomNumber = Armory;
-	room[Armory].roomDiscription.assign("Room clearly appears to be an armory but seems rather empty with broken weapon and armor fragments scattered about the room. There is one spear that remains intact and an iron bar that was once part of a baton.");
+	room[Armory].roomDiscription.assign("You are in a Spacious, dim room, with wooden barrels, shelves, and stands. Clearly appears to be an armory, although seems rather empty with the exception of broken weapon and armor fragments scattered about the room. Maybe something is still intact in the room.");
 	room[Armory].RoomExit[north] = NONE;
 	room[Armory].RoomExit[south] = NONE;
 	room[Armory].RoomExit[east] = NONE;
@@ -144,14 +147,14 @@ void Room::setRoom(Room* room) {
 
 	room[SouthCourtYard].name.assign("South Court Yard");
 	room[SouthCourtYard].roomNumber = SouthCourtYard;
-	room[SouthCourtYard].roomDiscription.assign("Large outdoor courtyard enclosed by tall Stone walls. There is a bridge in the middle of the courtyard that spans a strange abyss.");
+	room[SouthCourtYard].roomDiscription.assign("You are in a large outdoor courtyard enclosed by tall Stone walls. Wilted flower beds and rugged hedges populate the nearby terrain. A short, winding cobblestone path leads to a bridge in the middle of the courtyard spanning a dark abyss. A knight in black armor stands motionless by the bridge to the north. To the south are open double doors heading back into the Ballroom.");
 	room[SouthCourtYard].RoomExit[north] = NorthCourtYard;
 	room[SouthCourtYard].RoomExit[south] = BallRoom;
 	room[SouthCourtYard].RoomExit[east] = NONE;
 	room[SouthCourtYard].RoomExit[west] = NONE;
 
 	room[NorthCourtYard].name.assign("North Court Yard");
-	room[NorthCourtYard].roomDiscription.assign("The north side of the outdoor courtyard, there is a large wooden door ahead and a balcony up to the east with a hook extended from the bottom.");
+	room[NorthCourtYard].roomDiscription.assign("You are in the north side of the outdoor courtyard, to the west 3 tall fir trees cast long shadows in the moonlight over the courtyard. Ahead to the north is a large wooden door. To the east, curtains blow about in the wind from a balcony that has a hook extended from the bottom.");
 	room[NorthCourtYard].roomNumber = NorthCourtYard;
 	room[NorthCourtYard].RoomExit[north] = AlchemistsLab;
 	room[NorthCourtYard].RoomExit[south] = SouthCourtYard;
@@ -160,15 +163,15 @@ void Room::setRoom(Room* room) {
 
 	room[Bedroom].name.assign("Bedroom");
 	room[Bedroom].roomNumber = Bedroom;
-	room[Bedroom].roomDiscription.assign("A bedroom, furnished quite lavishly. On the dresser is a mirror and a large key. There is a door at the opposite end of the room (locked).");
+	room[Bedroom].roomDiscription.assign("You are in a spacious bedroom, furnished quite lavishly. On the dresser there are various objects and trinkets There is a door at the opposite end of the room but upon further investigation, you can figure that door is barricaded shut from the other side.");
 	room[Bedroom].RoomExit[north] = NONE;
 	room[Bedroom].RoomExit[south] = NONE;
 	room[Bedroom].RoomExit[east] = NONE;
 	room[Bedroom].RoomExit[west] = SouthCourtYard;
 
-	room[AlchemistsLab].name.assign("cell 15");
+	room[AlchemistsLab].name.assign("AlchemistsLab");
 	room[AlchemistsLab].roomNumber = AlchemistsLab;
-	room[AlchemistsLab].roomDiscription.assign("Cold misty room with many barrels, a large cauldron, and a sort of brewing stand supporting a flask of a strange, unknown substance.");
+	room[AlchemistsLab].roomDiscription.assign("You are in a cold, misty room with many barrels, a large cauldron, and a sort of brewing configuration supporting a multitude of  flasks of strange, unknown substances. Much of the ground is covered in a thin layer of rubble and broken glass. Some parts of the wall seem to be scorched and cracked. 14 hollowed bones hang from above rattling like wind chimes.");
 	room[AlchemistsLab].RoomExit[north] = NONE;
 	room[AlchemistsLab].RoomExit[south] = NorthCourtYard;
 	room[AlchemistsLab].RoomExit[east] = NONE;
@@ -176,31 +179,31 @@ void Room::setRoom(Room* room) {
 
 	room[WineCellar].name.assign("Wine Cellar");
 	room[WineCellar].roomNumber = WineCellar;
-	room[WineCellar].roomDiscription.assign("Dusty dark wine cellar. The room is thick with tough webs, especially at the mouth of a door to the east.");
+	room[WineCellar].roomDiscription.assign("You are in a dusty and dark wine cellar. The room is thick with tough webs, especially at the mouth of a door to the east, where the webs forge a resilient obstruction. Next to one of the wine barrels, the remains of a skeleton sitting up against the wall, holding an empty porcelain mug.");
 	room[WineCellar].RoomExit[north] = NONE;
 	room[WineCellar].RoomExit[south] = BrokenStairway;
-	room[WineCellar].RoomExit[east] = StorageRoom;
+	room[WineCellar].RoomExit[east] = NONE;
 	room[WineCellar].RoomExit[west] = NONE;
 
 	room[StorageRoom].name.assign("Storage Room");
 	room[StorageRoom].roomNumber = StorageRoom;
-	room[StorageRoom].roomDiscription.assign(" small dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.");
+	room[StorageRoom].roomDiscription.assign("You are in a  small, dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. One box seems to be blocking a hole in the wall, however it is too heavy to move with your bare hands.");
 	room[StorageRoom].RoomExit[north] = NONE;
 	room[StorageRoom].RoomExit[south] = NONE;
-	room[StorageRoom].RoomExit[east] = DirtPassageway;
+	room[StorageRoom].RoomExit[east] = NONE;
 	room[StorageRoom].RoomExit[west] = WineCellar;
 
 	room[DirtPassageway].name.assign("Dirt Passageway");
 	room[DirtPassageway].roomNumber = DirtPassageway;
 	room[DirtPassageway].RoomExit[north] = NONE;
-	room[DirtPassageway].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
+	room[DirtPassageway].roomDiscription.assign("You are in a narrow dirt passage, too short to stand in. There is a faint light ahead to the east.");
 	room[DirtPassageway].RoomExit[south] = NONE;
-	room[DirtPassageway].RoomExit[east] = DirtPassageway;
+	room[DirtPassageway].RoomExit[east] = DirtTunnel;
 	room[DirtPassageway].RoomExit[west] = StorageRoom;
 
 	room[DirtTunnel].name.assign("Dirt Tunnel");
 	room[DirtTunnel].roomNumber = DirtTunnel;
-	room[DirtTunnel].roomDiscription.assign(" Dirt tunnel, too short to stand or crouch through. There is a faint light ahead.");
+	room[DirtTunnel].roomDiscription.assign("You are in a narrow dirt tunnel, too short to stand or crouch through. There is a faint light ahead to the east.");
 	room[DirtTunnel].RoomExit[north] = NONE;
 	room[DirtTunnel].RoomExit[south] = NONE;
 	room[DirtTunnel].RoomExit[east] = UnderGroundChamber;
@@ -208,15 +211,15 @@ void Room::setRoom(Room* room) {
 
 	room[UnderGroundChamber].name.assign("Under Ground Chamber");
 	room[UnderGroundChamber].roomNumber = UnderGroundChamber;
-	room[UnderGroundChamber].roomDiscription.assign("small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder.");
+	room[UnderGroundChamber].roomDiscription.assign("You are in a small empty dirt room with a ladder to the south. There is a faint light peeking through a grate at the top of the ladder to the south. On the grate is a complex iron lock with four dials. Around the dials, the numbers one through one-hundred are etched into the iron. The grate is locked, but could possibly be opened with the right combination.");
 	room[UnderGroundChamber].RoomExit[north] = NONE;
-	room[UnderGroundChamber].RoomExit[south] = YouHaveEscaped;
+	room[UnderGroundChamber].RoomExit[south] = NONE;
 	room[UnderGroundChamber].RoomExit[east] = NONE;
 	room[UnderGroundChamber].RoomExit[west] = DirtTunnel;
 
 	room[YouHaveEscaped].name.assign("You Have Escaped");
 	room[YouHaveEscaped].roomNumber = YouHaveEscaped;
-	room[YouHaveEscaped].roomDiscription.assign("You Win");
+	room[YouHaveEscaped].roomDiscription.assign("You are beside a long dirt road running east and west. It is daytime now but there doesn’t seem to be anyone else nearby. You decide to follow the road away from the castle into the forest. You seem to have escaped for now...");
 	room[YouHaveEscaped].RoomExit[north] = UnderGroundChamber;
 	room[YouHaveEscaped].RoomExit[south] = NONE;
 	room[YouHaveEscaped].RoomExit[east] = NONE;
@@ -293,18 +296,83 @@ bool Room::exists(Room*room,int roomName,int direction) {
 }
 
 /*Gets called when proper item is used to solve puzzle to go to next room for room : Locked Cell*/
-bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemName, std::string itemUsedOn) {	
-	if (currentRoomName == "Locked Cell") {
-		if (itemName == "KEY" && itemUsedOn == "LOCK") {
-			room[lockedcell].RoomExit[north] = cellblocka765;
-			room[lockedcell].roomDiscription.assign("You have opened the cell similar to starting cell. There is a human skeleton hung from the ceiling with a rope.");
-			return true;
+bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemName) {	
+	if (currentRoomName == "Dungeon") {
+		if (itemName == "ROCK") {
+			rockThrowCount++;
+			if (rockThrowCount > 0 && rockThrowCount < 3) {
+				std::cout << "You threw the rock at the feeble part of the wall and you can see more of the next room... \n";
+			}
+			if (rockThrowCount == 3) {
+				std::cout << "The rock breaks open a hole in the wall big enough to crawl through.\n";
+				room[Dungeon].RoomExit[west] = lockedcell;
+				room[Dungeon].roomDiscription.assign("You are in a cold, damp cell with stone walls. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door. The room seems barren except for a few items. The wall to the west has a hole big enough to crawl through.\n");
+			}
 		}
 		else {
-			std::cout << "Couldn't use that here. \n";
-		}		
+			std::cout << "Cant use that item here. \n";
+		}
+	}
+	else if(currentRoomName == "Locked Cell") {
+		if (itemName == "KEY") {
+			std::cout << "The door unlocks.\n";
+			room[lockedcell].RoomExit[north] = cellblocka765;
+			room[lockedcell].roomDiscription.assign("You are in a small, stone walled cell. Through the dim moonlight you can see tally marks etched into the mossy stone wall, seemingly 88 in total. The north side has an open heavy iron door. There is a withered skeleton hanging from the ceiling and a hole in the wall to the east.\n");
+
+			return true;
+		}	
+		else {
+			std::cout << "Cant use that item here. \n";
+		}
+	}
+	else if (currentRoomName == "Cell Block Cross Roads") {
+		if (itemName == "CANDLE") {
+			std::cout << "You lit the candle, this will help in dark paths.";
+			room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
+			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. Something is strangely off about the wall to the north.\n");
+		}
+		else {
+			std::cout << "Cant use that item here. \n";
+		}
+	}
+	else if (currentRoomName == "Broken Stairway") {
+		if (itemName == "FLASK") {
+			std::cout << "You threw the flask. The stone wall suddenly crumbles, evaporating into a thick mist. It fades quickly revealing a passage where the wall once was.\n";
+			room[BrokenStairway].RoomExit[north] = WineCellar;
+			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. There is a doorway in the northern wall.\n");
+		}
+	}
+	else if (currentRoomName == "Wine Cellar") {
+		if (itemName == "KNIFE") {
+			std::cout << "You cut through the webs clearing a path to the door to the east.\n";
+			room[WineCellar].RoomExit[east] = StorageRoom;
+			room[WineCellar].roomDiscription.assign("You are in a dusty and dark wine cellar. The room is thick with tough webs, but the door to the east is clear. Next to one of the wine barrels, the remains of a skeleton sitting up against the wall, holding an empty porcelain mug.\n");
+		}
+	}
+	else if (currentRoomName == "Storage Room") {
+		if (itemName == "BAR") {
+			std::cout << "The you moved the box revieling a hole in the wall to the east.\n";
+			room[StorageRoom].RoomExit[east] = DirtPassageway;
+			room[StorageRoom].roomDiscription.assign("You are in a  small, dark room adjacent to the wine cellar. There are many boxes and barrels stacked about the room. Beside one box is a hole in the eastern wall just big enough to squeeze through.\n");
+		}
+	}
+	else if (currentRoomName == "Under Ground Chamber") {
+		if (itemName == "886314") {
+			std::cout << "The lock releases and you are able to push up the grate.\n";
+			room[UnderGroundChamber].RoomExit[south] = YouHaveEscaped;
+			room[UnderGroundChamber].roomDiscription.assign("You are in a small empty dirt room with a ladder to the south. There is a faint light peeking through the open grate at the top of the ladder to the south.\n");
+		}
 	}
 	else {
-		std::cout << "Using items won't help you here. \n";
+		if (itemName == "") {
+			std::cout << "Specify an item to use. \n";
+		}
+		else {
+			std::cout << "Cant use that item here. \n";
+		}
+		
 	}
 }

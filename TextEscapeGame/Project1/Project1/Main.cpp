@@ -12,14 +12,14 @@ extern const int ITEMS = 13;
 //the number of rooms in the game
 extern const int ROOMS = 22;
 //number of verbs in the game
-extern const int VERBS = 11;
+extern const int VERBS = 12;
 //enumerator to help with item pick up
 enum itemsname { rock, key };
 //count till it asks if you need help
 int helpcount = 0;
 //validates the input is an aproved verb
 std::string validateInput(std::string userInput) {
-	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","GET","INVENTORY","HELP" };
+	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","GET","INVENTORY","HELP","QUIT", };
 	//this keeps track of how many commands we print
 	int count = 0;
 	for (int i = 0; i < VERBS; i++) {

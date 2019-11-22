@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "Main.cpp"
 
 enum RoomNames {
 	player, Dungeon, lockedcell, cellblocka765, cellblock6mk5, cellblock88f7,CellBlockCrossRoads,cellblock25k6, BrokenStairway, BoneFilledDungeon
@@ -15,6 +16,8 @@ const int NONE = -1;
 const int MAYBE = -2;
 char a = 1;
 int rockThrowCount = 0;
+
+
 /*
 Defult Room constructor
 */
@@ -343,6 +346,19 @@ bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemN
 			std::cout << "You threw the flask. The stone wall suddenly crumbles, evaporating into a thick mist. It fades quickly revealing a passage where the wall once was.\n";
 			room[BrokenStairway].RoomExit[north] = WineCellar;
 			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. There is a doorway in the northern wall.\n");
+		}
+	}
+	else if (currentRoomName == "Bone Filled Dungeon") {
+		if (itemName == "SPEAR") {
+			std::cout << "The creature dies dropping the chest breaking it and revealing a shiny golden ring";
+			room[BoneFilledDungeon].roomDiscription.assign("You are in a filthy dungeon lit by burning torches along the moldy stone walls. The ground is littered with bones and a thin layer of reddish brown liquid. An enormous grotesque creature lays dead on the ground. A stairway leads upwards behind you to the west.\n`");
+			//need to have the items not show in this room until the spear is used
+		}
+	}
+	else if (currentRoomName == "North Court Yard") {
+		if (itemName == "ROPE") {
+			std::cout << "You are able to lasso the hook with the rope and create a way up to the balcony. ";
+			room[NorthCourtYard].roomDiscription.assign("You are in the north side of the outdoor courtyard, to the west 3 tall fir trees cast long shadows in the moonlight over the courtyard. Ahead to the north is a large wooden door. To the east, curtains blow about in the wind from a balcony that has a rope extending to the ground.\n");
 		}
 	}
 	else if (currentRoomName == "Wine Cellar") {

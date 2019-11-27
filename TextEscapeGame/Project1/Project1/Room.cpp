@@ -303,13 +303,17 @@ bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemN
 	if (currentRoomName == "Dungeon") {
 		if (itemName == "ROCK") {
 			rockThrowCount++;
-			if (rockThrowCount > 0 && rockThrowCount < 3) {
+			if (rockThrowCount == 1) {
 				std::cout << "You threw the rock at the feeble part of the wall and you can see more of the next room... \n";
 			}
-			if (rockThrowCount == 3) {
+			else if (rockThrowCount == 2) {
+				std::cout << "You threw the rock at the hole you made in the wall so now you can almost fit through the hole... \n";
+			}
+			else if (rockThrowCount == 3) {
 				std::cout << "The rock breaks open a hole in the wall big enough to crawl through.\n";
 				room[Dungeon].RoomExit[west] = lockedcell;
 				room[Dungeon].roomDiscription.assign("You are in a cold, damp cell with stone walls. The room is dark with the exception of dim moonlight bleeding through a small window to the south opposite a heavy Iron door. The room seems barren except for a few items. The wall to the west has a hole big enough to crawl through.\n");
+				
 			}
 		}
 		else {

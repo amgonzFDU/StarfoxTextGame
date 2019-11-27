@@ -8,7 +8,7 @@ enum itemsname { rock, key,scroll,candle,rope,spear,bar,chest,ring,mirror,key2,f
 enum itemslocation{
 	player, cell, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9
 	, cell10, cell11, cell12, cell13, cell14, cell15, cell16, cell17, cell18
-	, cell19, cell20, cell21,sizeoflocatins
+	, cell19, cell20, cell21,sizeoflocatins,none
 };
 Items::Items() {
 
@@ -48,11 +48,12 @@ void Items::setItemLocation(Items* item) {
 	item[bar].itemRoom.assign("cell11");
 
 	item[chest].name.assign("CHEST");
-	item[chest].location = cell9;
+	
+	item[chest].location = none;
 	item[chest].itemRoom.assign("cell9");
 
 	item[ring].name.assign("RING");
-	item[ring].location = cell9;
+	item[ring].location = none;
 	item[ring].itemRoom.assign("cell9");
 
 	item[mirror].name.assign("KNIFE");
@@ -85,6 +86,9 @@ void Items::PlayerPickup(Items* item, std::string userInput,int currentRoom) {
 		if (item[itemNameEnumNumber].name == "SCROLL" && currentRoom == 1) {
 			std::cout << "A feeble bit of wall is revealed from behind the scroll.\n";
 		}
+	}
+	else {
+		std::cout << userInput + " is not in this room.\n";
 	}
 }
 // If the player wants to drop an item then we get what room 
@@ -161,7 +165,7 @@ int Items::getItemNameEnum(Items* item, std::string itemname) {
 bool Items::CheckInventory(Items* item, std::string itemName) {
 	
 	for (int i = 0; i <= flask; i++) {
-		if (item[i].location == player) {
+		if (item[i].location == player && item[i].name == itemName) {
 			return true;
 		}
 	}
@@ -193,4 +197,10 @@ void Items::outputRoomItems(Items* item, int currentRoom) {
 		std::cout << "Nothing\n";
 	}
 	
+}
+
+//This will move the items from room none to cell9
+void Items::ChangeRoomLocation(Items* item) {
+	item[ring].location = cell9;
+	item[chest].location = cell9;
 }

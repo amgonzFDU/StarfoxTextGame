@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
 					std::string itemName = USERINPUT();									
 					if (item->CheckInventory(item, itemName)) {
 						std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
-						room->SolvePuzzle(room, currentRoomName, itemName);
+						room->SolvePuzzle(room, item, currentRoomName, itemName);
 						
 						if(itemName != "ROCK")std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
 					}

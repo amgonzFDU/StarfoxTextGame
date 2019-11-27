@@ -299,7 +299,7 @@ bool Room::exists(Room*room,int roomName,int direction) {
 }
 
 /*Gets called when proper item is used to solve puzzle to go to next room for room : Locked Cell*/
-bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemName) {	
+bool Room::SolvePuzzle(Room* room, Items* item, std::string currentRoomName, std::string itemName) {	
 	if (currentRoomName == "Dungeon") {
 		if (itemName == "ROCK") {
 			rockThrowCount++;
@@ -354,9 +354,11 @@ bool Room::SolvePuzzle(Room* room,std::string currentRoomName, std::string itemN
 	}
 	else if (currentRoomName == "Bone Filled Dungeon") {
 		if (itemName == "SPEAR") {
-			std::cout << "The creature dies dropping the chest breaking it and revealing a shiny golden ring";
+			std::cout << "The creature dies dropping the chest breaking it and revealing a shiny golden ring.\n";
 			room[BoneFilledDungeon].roomDiscription.assign("You are in a filthy dungeon lit by burning torches along the moldy stone walls. The ground is littered with bones and a thin layer of reddish brown liquid. An enormous grotesque creature lays dead on the ground. A stairway leads upwards behind you to the west.\n`");
 			//need to have the items not show in this room until the spear is used
+			Items items;
+			items.ChangeRoomLocation(item);
 		}
 	}
 	else if (currentRoomName == "North Court Yard") {

@@ -22,5 +22,6 @@ public:
 	void outputPlayerItems(Items*);
 	void outputRoomItems(Items* item, int);
 	bool CheckInventory(Items* item, std::string itemName);
+	void ChangeRoomLocation(Items* item);
 
 };

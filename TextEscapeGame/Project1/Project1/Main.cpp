@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <Windows.h>
 
 
 //the number of items in the game
@@ -17,6 +18,65 @@ extern const int VERBS = 12;
 enum itemsname { rock, key };
 //count till it asks if you need help
 int helpcount = 0;
+int Ctrlcount = 0;
+//this should fix all the problems with pressing ctrl+key
+//don't worry about the errors they dissapear when you debugg it
+BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
+{
+	switch (fdwCtrlType)
+	{
+		// Handle the CTRL-C signal. 
+	case CTRL_C_EVENT:
+		
+		if (Ctrlcount == 0) {
+			printf("Stop pressing Ctrl-C it does nothing and only gives us more problems.\n");
+			Ctrlcount++;
+		}
+		else if (Ctrlcount == 1) {
+			printf("Ok now your just getting annoying\n\n");
+			Ctrlcount++;
+		}
+		else if (Ctrlcount == 2) {
+			printf("Are you going to play the game or just keep wasting your time there is nothing else here\n\n");
+			Ctrlcount++;
+		}
+		else if (Ctrlcount == 3) {
+			printf("If you press Ctrl-c one more time i'm shutting down");
+			Ctrlcount++;
+		}
+		else if (Ctrlcount == 4) {
+			exit(0);
+		}
+		Beep(750, 300);
+		return TRUE;
+
+		// CTRL-CLOSE: confirm that the user wants to exit. 
+	case CTRL_CLOSE_EVENT:
+		Beep(600, 200);
+		printf("Ctrl-Close event\n\n");
+		return TRUE;
+
+		// Pass other signals to the next handler. 
+	case CTRL_BREAK_EVENT:
+		Beep(900, 200);
+		printf("Ctrl-Break event\n\n");
+		return FALSE;
+
+	case CTRL_LOGOFF_EVENT:
+		Beep(1000, 200);
+		printf("Ctrl-Logoff event\n\n");
+		return FALSE;
+
+	case CTRL_SHUTDOWN_EVENT:
+		Beep(750, 500);
+		printf("Ctrl-Shutdown event\n\n");
+		return FALSE;
+
+	default:
+		return FALSE;
+	}
+}
+
 //validates the input is an aproved verb
 std::string validateInput(std::string userInput) {
 	std::string validInputs[VERBS] = { "NORTH","EAST","SOUTH","WEST", "USE", "THROW", "DROP", "ROOM","GET","INVENTORY","HELP","QUIT", };
@@ -61,7 +121,14 @@ std::string USERINPUT() {
 }
 int main(int argc, char *argv[])
 {
-	
+	if (SetConsoleCtrlHandler(CtrlHandler, TRUE))
+	{
+	}
+	else
+	{
+		printf("\nERROR: Could not set control handler");
+		return 1;
+	}
 		//Inializes an array that will hold the items with their properties
 		Items item[ITEMS];
 		//sets the name of the item
@@ -194,7 +261,8 @@ int main(int argc, char *argv[])
 					if (item->CheckInventory(item, itemName)) {
 						std::string currentRoomName = CURRENTROOM->getCurrentRoomName();
 						room->SolvePuzzle(room, currentRoomName, itemName);
-						std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
+						
+						if(itemName != "ROCK")std::cout << CURRENTROOM->getRoomDiscription(room, CURRENTROOM->getCurrentRoomNumber()) << std::endl;
 					}
 				}
 				//Team decided to just use the verb USE to make it easier for the user.

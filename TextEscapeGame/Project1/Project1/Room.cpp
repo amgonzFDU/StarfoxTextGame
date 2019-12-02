@@ -300,6 +300,9 @@ bool Room::exists(Room*room,int roomName,int direction) {
 
 /*Gets called when proper item is used to solve puzzle to go to next room for room : Locked Cell*/
 bool Room::SolvePuzzle(Room* room, Items* item, std::string currentRoomName, std::string itemName) {	
+	if (itemName == "SCROLL") {
+		std::cout << "In the cell you wake, filled with dismay. Navigate thy labyrinth, finding thou way. Observations thou make are a blessing to thee. The numbers beware as they hold the key.";
+	}
 	if (currentRoomName == "Dungeon") {
 		if (itemName == "ROCK") {
 			rockThrowCount++;
@@ -388,6 +391,7 @@ bool Room::SolvePuzzle(Room* room, Items* item, std::string currentRoomName, std
 			room[UnderGroundChamber].roomDiscription.assign("You are in a small empty dirt room with a ladder to the south. There is a faint light peeking through the open grate at the top of the ladder to the south.\n");
 		}
 	}
+	
 	else {
 		if (itemName == "") {
 			std::cout << "Specify an item to use. \n";

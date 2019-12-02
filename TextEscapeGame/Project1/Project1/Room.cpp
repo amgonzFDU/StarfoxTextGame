@@ -77,7 +77,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblocka765].name.assign("Cell Block A765");
 	room[cellblocka765].roomNumber = cellblocka765;
-	room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
+	room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. The door to your immediate south is open. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblocka765].RoomExit[north] = NONE;
 	room[cellblocka765].RoomExit[south] = lockedcell;
 	room[cellblocka765].RoomExit[east] = cellblock25k6;
@@ -85,7 +85,7 @@ void Room::setRoom(Room* room) {
 	
 	room[cellblock6mk5].name.assign("Cell Block 6mk5");
 	room[cellblock6mk5].roomNumber = cellblock6mk5;
-	room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
+	room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblock6mk5].RoomExit[north] = NONE;
 	room[cellblock6mk5].RoomExit[south] = NONE;
 	room[cellblock6mk5].RoomExit[east] = cellblocka765;
@@ -93,7 +93,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblock88f7].name.assign("Cell Block 88f7");
 	room[cellblock88f7].roomNumber = cellblock88f7;
-	room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
+	room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.\n");
 	room[cellblock88f7].RoomExit[north] = NONE;
 	room[cellblock88f7].RoomExit[south] = NONE;
 	room[cellblock88f7].RoomExit[east] = cellblock6mk5;
@@ -109,7 +109,7 @@ void Room::setRoom(Room* room) {
 
 	room[cellblock25k6].name.assign("Cell Block 25k6");
 	room[cellblock25k6].roomNumber = cellblock25k6;
-	room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.");
+	room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. It is awfully dark, but in the faint light you can make out the silhouettes of bones and skulls scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway is pitch black and an unsettling groan can be heard, muffled by the stiff atmosphere.");
 	room[cellblock25k6].RoomExit[north] = NONE;
 	room[cellblock25k6].RoomExit[south] = NONE;
 	room[cellblock25k6].RoomExit[east] = BrokenStairway;
@@ -338,11 +338,11 @@ bool Room::SolvePuzzle(Room* room, Items* item, std::string currentRoomName, std
 	else if (currentRoomName == "Cell Block Cross Roads") {
 		if (itemName == "CANDLE") {
 			std::cout << "You lit the candle, this will help in dark paths.";
-			room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
-			room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
-			room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
-			room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the eastern passage. To the west, the hallway seems to go down.\n");
-			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The eastward passage heads back into the long hall of cells. Something is strangely off about the wall to the north.\n");
+			room[cellblock88f7].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway seems to go down.\n");
+			room[cellblock6mk5].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway seems to go down.\n");
+			room[cellblocka765].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway seems to go down.\n");
+			room[cellblock25k6].roomDiscription.assign("You are in a Long, narrow hallway lined with locked cells, though only on the south side. Bones and skulls are scattered along the ground. There is a dim light at the far end of the western passage. To the east, the hallway seems to go down.\n");
+			room[BrokenStairway].roomDiscription.assign("There is a partially broken staircase leading downward. There are several deep holes throughout the staircase. The bottoms are too far to see with only the candle light, nonetheless it is sufficient enough to navigate the stairs safely. The westward passage heads back into the long hall of cells. Something is strangely off about the wall to the north.\n");
 		}
 		else {
 			std::cout << "Cant use that item here. \n";
